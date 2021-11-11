@@ -19,7 +19,19 @@ class Menu extends Component {
     };
   }
   
- 
+  login(email, password) {
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((userData) => { 
+          this.setState({loggedIn: true,  
+                       // error: "",
+        }) 
+
+    ;})
+      .catch((err) =>  this.setState({error: err.message})
+      )
+      console.log(auth.signInWithEmailAndPassword(email, password));
+  }
 
  
   render() {
@@ -27,8 +39,8 @@ class Menu extends Component {
     return (
         
       <Drawer.Navigator>
-           <Drawer.Screen name='Prueba' component={() => <Login/> }/>
-           <Drawer.Screen name='Prueba2' component={() => <Register/> }/>
+           <Drawer.Screen name='login' component={() => <Login/> }/>
+           <Drawer.Screen name='register' component={() => <Register/> }/>
       </Drawer.Navigator>
     );
   }
