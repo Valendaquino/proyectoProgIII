@@ -18,7 +18,18 @@ class Menu extends Component {
       error: "",
     };
   }
-  
+  register(email, password) {
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((userData) => { 
+         this.setState({loggedIn: true,
+                       // error: "",
+        }) ; 
+    })
+      .catch((err) =>  
+         this.setState({error: err.message})
+    );
+  }
   login(email, password) {
     auth
       .signInWithEmailAndPassword(email, password)
