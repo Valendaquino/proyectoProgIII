@@ -13,6 +13,7 @@ class Register extends Component {
     this.state = {
       email: "",
       password: "",
+      userName: ""
      
     };
   }
@@ -22,11 +23,17 @@ class Register extends Component {
     return (
       <View>
         <Text>{this.props.error}</Text>
+        <Text>Register</Text>
         <TextInput
           onChangeText={(text) => this.setState({ email: text })}
           placeholder="email"
           keyboardType="email-address"
         />
+        <TextInput
+          style={styles.input}
+          onChangeText={(text)=>this.setState({userName: text})}
+          placeholder='user name'
+          keyboardType='default'/>
         <TextInput
           onChangeText={(text) => this.setState({ password: text })}
           placeholder="password"

@@ -4,6 +4,8 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { auth } from "../firebase/config";
 
 // Import de los screens a los que quiero navegar
+import Home from '../screens/Home';
+import Profile from '../screens/Profile';
 import Login from "../screens/Login";
 import Register from "../screens/Register";
 
@@ -18,6 +20,15 @@ class Menu extends Component {
       error: "",
     };
   }
+  componentDidMount(){
+    auth.onAuthStateChanged((user)=>{
+     if(user!==null){
+         this.setState({loggedIn:true, userData: user})
+     }else{
+         this.setState({loggedIn:false, userData: ""})
+     }
+ })
+ }
   register(email, password) {
     auth
       .createUserWithEmailAndPassword(email, password)
@@ -43,16 +54,35 @@ class Menu extends Component {
       )
       console.log(auth.signInWithEmailAndPassword(email, password));
   }
+  logout(){
+    auth
+        .signOut()
+        .then( ()=>{
+            this.setState({
+                loggedIn:false,
+                userData:""
+        
+        })})
+       .catch(err=> console.log(err))
+     
+ }
 
  
   render() {
   
     return (
-        
-      <Drawer.Navigator>
-           <Drawer.Screen name='login' component={() => <Login/> }/>
-           <Drawer.Screen name='register' component={() => <Register/> }/>
-      </Drawer.Navigator>
+        <Drawer.Navigator>
+            {this.state.loggedIn === true ? 
+                <>
+                    <Drawer.Screen name="Inicio" component={() => <Home /> } /> 
+                    <Drawer.Screen name="Profile" component={() => <Profile  logout={()=>this.logout()}/> }  />
+                    <Drawer.Screen name="New Post" component={() => <NewPostForm/>}/>
+                    </>:<>
+                    <Drawer.Screen name="Login" component={() => <Login login={(email, pass) => this.login(email,pass)} error={this.state.error}/>} />
+                    <Drawer.Screen name="Register"  component={() => <Register register={(email, pass) => this.register(email,pass)} error={this.state.error}/>} />
+                </>
+        }
+        </Drawer.Navigator>
     );
   }
 }

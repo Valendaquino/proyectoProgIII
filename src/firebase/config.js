@@ -1,8 +1,7 @@
 
   import app from 'firebase/app'
   import firebase from 'firebase'
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "firebase/app";
+
   
   const firebaseConfig = {
     apiKey: "AIzaSyCafhlObSeu8TMPMuwBfVNQP-fiXsuY9QQ",
