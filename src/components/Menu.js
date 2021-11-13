@@ -8,6 +8,8 @@ import Home from '../screens/Home';
 import Profile from '../screens/Profile';
 import Login from "../screens/Login";
 import Register from "../screens/Register";
+import PostForm from "../screens/PostForm";
+
 
 const Drawer = createDrawerNavigator();
 
@@ -76,7 +78,7 @@ class Menu extends Component {
                 <>
                     <Drawer.Screen name="Inicio" component={() => <Home /> } /> 
                     <Drawer.Screen name="Profile" component={() => <Profile  logout={()=>this.logout()}/> }  />
-                    <Drawer.Screen name="New Post" component={() => <NewPostForm/>}/>
+                    <Drawer.Screen name="New Post" component={() => <PostForm/>}/>
                     </>:<>
                     <Drawer.Screen name="Login" component={() => <Login login={(email, pass) => this.login(email,pass)} error={this.state.error}/>} />
                     <Drawer.Screen name="Register"  component={() => <Register register={(email, pass) => this.register(email,pass)} error={this.state.error}/>} />
