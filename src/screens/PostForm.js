@@ -17,7 +17,8 @@ class PostForm extends Component{
             user: auth.currentUser.email,
             createdAt: Date.now(),
             description: this.state.textoPost,
-            photo: this.state.url
+            photo: this.state.url,
+            likes:[]
         })
         .then( ()=>{
             this.setState({
@@ -28,19 +29,19 @@ class PostForm extends Component{
         })
         .catch(err=>console.log(err))
     }
-    onImageUpload(url){
-        this.setState({
-            url: url ,//va a ser igual a la url que viene del hijo.
-            showCamera:false,
-        })
-    }
+    //onImageUpload(url){
+      //  this.setState({
+        //    url: url ,//va a ser igual a la url que viene del hijo.
+          //  showCamera:false,
+ //       })
+   // }
     render(){
         return(
-            this.state.showCamera ? (
-                <Text>Holi</Text>
+      //      this.state.showCamera ? (
+       //         <Text>Holi</Text>
                 //<MyCamera onImageUpload={(url)=>this.onImageUpload(url)}/>
                 //desde el componente hijo vamos a ejecutar este método
-            ):(
+       //     ):(
 
                 <View style={styles.formContainer}>
                     <TextInput
@@ -56,7 +57,7 @@ class PostForm extends Component{
                         <Text style={styles.textButton}>Post</Text>    
                     </TouchableOpacity>
                 </View>
-            )
+       //     )
         )
     }
 }
