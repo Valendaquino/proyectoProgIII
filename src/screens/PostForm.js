@@ -1,47 +1,62 @@
-import { NavigationRouteContext } from "@react-navigation/native";
 import React, {Component} from "react";
 import {View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
 import { auth, db } from '../firebase/config'
-
+import MyCamera from '../components/MyCamera';
 class PostForm extends Component{
     constructor(props){
         super(props)
         this.state={
+           
             textoPost:'',
-        }
+            url:'',
+            showCamera: true
+        };
     }
     submitPost(){
-        console.log('posteando...');
         db.collection('posts').add({
-            owner: auth.currentUser.email,
-            texto: this.state.textoPost,
+            user: auth.currentUser.email,
             createdAt: Date.now(),
+            description: this.state.textoPost,
+            photo: this.state.url
         })
         .then( ()=>{
             this.setState({
                 textoPost:'',
             })
-            //Redirección
-            this.props.drawerProps.navigation.navigate('Home')
+        
+           // this.props.drawerProps.navigation.navigate('Home')
         })
-        .catch()
+        .catch(err=>console.log(err))
     }
-
+    onImageUpload(url){
+        this.setState({
+            url: url ,//va a ser igual a la url que viene del hijo.
+            showCamera:false,
+        })
+    }
     render(){
         return(
-            <View style={styles.formContainer}>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={(text)=>this.setState({textoPost: text})}
-                    placeholder='Escribí aquí'
-                    keyboardType='default'
-                    multiline
-                    value={this.state.textoPost}    
-                    />
-                <TouchableOpacity style={styles.button} onPress={()=>this.submitPost()}>
-                    <Text style={styles.textButton}>Guardar</Text>    
-                </TouchableOpacity>
-            </View>
+            this.state.showCamera ? (
+                <Text>Holi</Text>
+                //<MyCamera onImageUpload={(url)=>this.onImageUpload(url)}/>
+                //desde el componente hijo vamos a ejecutar este método
+            ):(
+
+                <View style={styles.formContainer}>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={(text)=>this.setState({textoPost: text})}
+                        placeholder='Escribí aquí'
+                        keyboardType='default'
+                        multiline={true} 
+                        value={this.state.textoPost}    
+                        />
+                    <TouchableOpacity style={styles.button} 
+                                      onPress={()=>this.submitPost()}>
+                        <Text style={styles.textButton}>Post</Text>    
+                    </TouchableOpacity>
+                </View>
+            )
         )
     }
 }
