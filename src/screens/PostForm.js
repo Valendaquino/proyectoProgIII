@@ -18,7 +18,8 @@ class PostForm extends Component{
             createdAt: Date.now(),
             description: this.state.textoPost,
             photo: this.state.url,
-            likes:[]
+            likes:[],
+            comments:[]
         })
         .then( ()=>{
             this.setState({
