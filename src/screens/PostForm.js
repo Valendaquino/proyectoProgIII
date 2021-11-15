@@ -6,7 +6,6 @@ class PostForm extends Component{
     constructor(props){
         super(props)
         this.state={
-           
             textoPost:'',
             url:'',
             showCamera: true
@@ -21,12 +20,12 @@ class PostForm extends Component{
             likes:[],
             comments:[]
         })
-        .then( ()=>{
+        .then( ()=>{ 
             this.setState({
                 textoPost:'',
-            },()=>this.props.screenProps.navigation.navigate('Home'))
-            
-            
+            })
+  
+            this.props.screenProps.navigation.navigate('Home')
         })
          
           

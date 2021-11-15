@@ -7,7 +7,7 @@ class Profile extends Component{
   constructor(props){
     super(props);
     this.state ={
-      
+      posteos: [],
     }
   }
   componentDidMount(){
@@ -16,8 +16,8 @@ class Profile extends Component{
    }
   showPost(){
     db.collection('posts')
-        //.where('user', '==',auth.currentUser.email)
-        .orderBy('createdAt', 'desc') // 1 propiedad sobre la que queres aplicar un orden
+        .where('user', '==',auth.currentUser.email)
+        //.orderBy('createdAt', 'desc') // 1 propiedad sobre la que queres aplicar un orden
         .onSnapshot(
         docs => {
           console.log(docs);
@@ -40,10 +40,17 @@ class Profile extends Component{
    
     return(
       <View style={styles.container}>
-                <text>e-mail:{auth.currentUser.email}</text>
-                <text>creation date:{auth.currentUser.metadata.creationTime}</text>
-                <text>last login:{auth.currentUser.metadata.lastSignInTime}</text>
+                <text>E-mail:{auth.currentUser.email}</text>
+                
+                <FlatList 
+                  data= { this.state.posteos }
+                  keyExtractor = { post => post.id}
+                  renderItem = { ({item}) => <Post postData={item}/>}
+                />
+                <text>C reation date:{auth.currentUser.metadata.creationTime}</text>
+                <text>Last login:{auth.currentUser.metadata.lastSignInTime}</text>
                 <TouchableOpacity onPress={()=>this.props.logout()}>LogOut</TouchableOpacity>
+                
       </View>
       
     )

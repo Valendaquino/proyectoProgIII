@@ -76,12 +76,12 @@ class Menu extends Component {
         <Drawer.Navigator>
             {this.state.loggedIn === true ? 
                 <>
-                    <Drawer.Screen name="Inicio" component={() => <Home /> } /> 
+                    <Drawer.Screen name="Home" component={() => <Home /> } /> 
                     <Drawer.Screen name="Profile" component={() => <Profile  logout={()=>this.logout()}/> }  />
-                    <Drawer.Screen name="New Post" component={(screenProps) => <PostForm screenProps={screenProps}/>}/>
+                    <Drawer.Screen name="New Post" component={(screenProps)=><PostForm screenProps={screenProps}/>}/>
                     </>:<>
                     <Drawer.Screen name="Login" component={(screenProps) => <Login screenProps={screenProps} login={(email, pass) => this.login(email,pass)} error={this.state.error}/>} />
-                    <Drawer.Screen name="Register"  component={() => <Register register={(email, pass) => this.register(email,pass)} error={this.state.error}/>} />
+                    <Drawer.Screen name="Register"  component={(screenProps) => <Register screenProps={screenProps} register={(email, pass) => this.register(email,pass)} error={this.state.error}/>} />
                 </>
         }
         </Drawer.Navigator>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, Modal, TouchableOpacity,FlatList } from 'react-native'
+import { Text, StyleSheet, View, Modal,Image, TouchableOpacity,FlatList } from 'react-native'
 import { auth, db } from '../firebase/config'
 import firebase from 'firebase'
 import CommentForm from './CommentForm'
@@ -42,7 +42,8 @@ class Post extends Component {
         })
         .then(() => {
             this.setState({
-                likes: this.state.likes + 1, //traer de la base de datos.
+                likes:this.props.postData.data.likes.length,
+                // this.state.likes + 1, //traer de la base de datos.
                 liked: true
             })
             console.log('likeado');
@@ -60,7 +61,7 @@ class Post extends Component {
         })
         .then(() => {
             this.setState({
-                likes: this.state.likes - 1,
+                likes: this.props.postData.data.likes.length,
                 liked: false
             })
             console.log('deslikeado');
@@ -108,6 +109,10 @@ class Post extends Component {
     render() {
         return (
             <View style={styles.container}>
+                 <Image
+                    style={{ flex: 1, width: "100%", height:200, borderRadius: 4, marginBottom:10 }}
+                    source={{ uri: this.props.postData.data.photo}}
+                    />
                 <Text> {this.props.postData.data.user} </Text>
                 <Text> {this.props.postData.data.description} </Text>
 =
@@ -127,7 +132,7 @@ class Post extends Component {
                 {/* MODAL  */}
 
                 <TouchableOpacity onPress={() => this.showModal()}>
-                    <Text>Comments: {this.state.comments}</Text>
+                    <Text>Comments: {this.props.postData.data.comments.length}</Text>
                 </TouchableOpacity>
 
                 {/* Modal comentarios */}
