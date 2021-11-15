@@ -23,10 +23,13 @@ class PostForm extends Component{
         .then( ()=>{
             this.setState({
                 textoPost:'',
-            })
-        
-           // this.props.drawerProps.navigation.navigate('Home')
+            },()=>this.props.screenProps.navigation.navigate('Home'))
+            
+            
         })
+         
+          
+         
         .catch(err=>console.log(err))
     }
     onImageUpload(url){
@@ -35,24 +38,20 @@ class PostForm extends Component{
            showCamera:false,
        })
    }
+
+ 
     render(){
         return this.state.showCamera ? (
             <MyCamera onImageUpload={(url) => this.onImageUpload(url)} />
           ) : (
             <View style={styles.formContainer}>
-              <TextInput
-                style={styles.input}
-                placeholder="Título"
-                keyboardType="default"
-                onChangeText={(text) => this.setState({ title: text })}
-                value={this.state.title}
-              />
+             
               <TextInput
                 style={styles.input}
                 placeholder="Descripción"
                 keyboardType="default"
-                onChangeText={(text) => this.setState({ description: text })}
-                value={this.state.description}
+                onChangeText={(text) => this.setState({ textoPost: text })}
+                value={this.state.textoPost}
                 multiline={true}
               />
       

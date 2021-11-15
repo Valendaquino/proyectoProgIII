@@ -67,12 +67,31 @@ class Post extends Component {
         });
     }
 
+    openModal(){
+        this.setState({
+            showModal:true,
+        })
+    }
+
+    closeModal(){
+        this.setState({
+            showModal:false,
+        })
+    }
+
+
+
+
+
     render() {
         return (
             <View style={styles.container}>
                 <Text> {this.props.postData.data.user} </Text>
                 <Text> {this.props.postData.data.description} </Text>
                 <Text> likes:{this.state.likes}</Text>
+                <TouchableOpacity onPress={() => this.openModal()}>
+                    <Text>Likes: {this.state.likes}</Text>
+                </TouchableOpacity>
                 {
                     ! this.state.liked ?
                         <TouchableOpacity style={styles.button} onPress={() => this.likePost()}>
@@ -83,7 +102,25 @@ class Post extends Component {
                             <Text style={styles.textButton}>Deslikear</Text>
                         </TouchableOpacity>
                 }
-
+                {/* MODAL  */}
+                {/* EL condicional lo hacemos solo porque en web no funciona como en una app nativa. La prop visible, por más que esté en falsa, en web nos sigue mostrando el modal. En una app ya compilada, no haría falta y la prop visible funciona perfecto.  */}
+                {
+                    ! this.state.showModal ? 
+                        null
+                    :
+                        <Modal 
+                            style={styles.modalContainer}
+                            visible={this.state.showModal}
+                            animationType="slide"
+                            transparent={false}
+                        >
+                            {/* Pueden hacer un componente aparte para el modal. En el caso de los comentarios, si hacen un componente CommentsModal, le querrían pasar mediante props el array de comentarios.  */}
+                            <TouchableOpacity onPress={() => this.closeModal()} style={styles.closeModal}>
+                                <Text>X</Text>
+                            </TouchableOpacity>
+                            <Text style={styles.modalText}>Soy un modal</Text>
+                        </Modal>
+                }
             </View>
         )
     }
