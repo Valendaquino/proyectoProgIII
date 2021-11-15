@@ -11,24 +11,30 @@ class Home extends Component{
     }
   }
   componentDidMount(){
-    console.log('En didMount');
-    db.collection('posts').onSnapshot(
-      docs => {
-        console.log(docs);
-        let posts = [];
-        docs.forEach( doc => {
-          posts.push({
-            id: doc.id,
-            data: doc.data(),
+   this.showPost();
+ 
+  }
+  showPost(){
+    db.collection('posts')
+        //.where('user', '==',auth.currentUser.email)
+        .orderBy('createdAt', 'desc') // 1 propiedad sobre la que queres aplicar un orden
+        .onSnapshot(
+        docs => {
+          console.log(docs);
+          let posts = [];
+          docs.forEach( doc => {
+            posts.push({
+              id: doc.id,
+              data: doc.data(),
+            })
           })
-        })
-        console.log(posts);
-
-        this.setState({
-          posteos: posts,
-        })
-      }
-    )
+          console.log(posts);
+  
+          this.setState({
+            posteos: posts,
+          })
+        }
+      )
   }
 
   render(){

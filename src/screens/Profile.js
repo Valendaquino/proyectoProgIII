@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, FlatList, TextInput} from 'react-native';
-import { auth } from "../firebase/config";
+import { db, auth } from '../firebase/config'
+import Post from '../components/Post';
 
 class Profile extends Component{
   constructor(props){
@@ -8,6 +9,32 @@ class Profile extends Component{
     this.state ={
       
     }
+  }
+  componentDidMount(){
+    this.showPost();
+  
+   }
+  showPost(){
+    db.collection('posts')
+        //.where('user', '==',auth.currentUser.email)
+        .orderBy('createdAt', 'desc') // 1 propiedad sobre la que queres aplicar un orden
+        .onSnapshot(
+        docs => {
+          console.log(docs);
+          let posts = [];
+          docs.forEach( doc => {
+            posts.push({
+              id: doc.id,
+              data: doc.data(),
+            })
+          })
+          console.log(posts);
+  
+          this.setState({
+            posteos: posts,
+          })
+        }
+      )
   }
   render(){
    

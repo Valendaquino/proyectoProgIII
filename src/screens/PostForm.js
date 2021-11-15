@@ -29,37 +29,42 @@ class PostForm extends Component{
         })
         .catch(err=>console.log(err))
     }
-    //onImageUpload(url){
-      //  this.setState({
-        //    url: url ,//va a ser igual a la url que viene del hijo.
-          //  showCamera:false,
- //       })
-   // }
+    onImageUpload(url){
+       this.setState({
+           url: url ,//va a ser igual a la url que viene del hijo.
+           showCamera:false,
+       })
+   }
     render(){
-        return(
-      //      this.state.showCamera ? (
-       //         <Text>Holi</Text>
-                //<MyCamera onImageUpload={(url)=>this.onImageUpload(url)}/>
-                //desde el componente hijo vamos a ejecutar este método
-       //     ):(
-
-                <View style={styles.formContainer}>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={(text)=>this.setState({textoPost: text})}
-                        placeholder='Escribí aquí'
-                        keyboardType='default'
-                        multiline={true} 
-                        value={this.state.textoPost}    
-                        />
-                    <TouchableOpacity style={styles.button} 
-                                      onPress={()=>this.submitPost()}>
-                        <Text style={styles.textButton}>Post</Text>    
-                    </TouchableOpacity>
-                </View>
-       //     )
-        )
-    }
+        return this.state.showCamera ? (
+            <MyCamera onImageUpload={(url) => this.onImageUpload(url)} />
+          ) : (
+            <View style={styles.formContainer}>
+              <TextInput
+                style={styles.input}
+                placeholder="Título"
+                keyboardType="default"
+                onChangeText={(text) => this.setState({ title: text })}
+                value={this.state.title}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="Descripción"
+                keyboardType="default"
+                onChangeText={(text) => this.setState({ description: text })}
+                value={this.state.description}
+                multiline={true}
+              />
+      
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => this.submitPost()}
+              >
+                <Text style={styles.textButton}>Postear</Text>
+              </TouchableOpacity>
+            </View>
+          );
+        }
 }
 
 const styles = StyleSheet.create({

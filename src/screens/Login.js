@@ -15,7 +15,9 @@ class Login extends Component{
             password: "",
         }  
     }
-    
+    navigationToRegister(){
+      this.props.screenProps.navigation.navigate('Register')
+    }
     render(){
         return (
             <View>
@@ -30,6 +32,11 @@ class Login extends Component{
              placeholder="password"
              keyboardType="email-addres"
              secureTextEntry={true} />
+             <TouchableOpacity onPress={()=> this.navigationToRegister()}>
+               <Text>
+                 ¿No tenes una cuenta? ¡Registrate!
+               </Text>
+             </TouchableOpacity>
              <TouchableOpacity
                 style={styles.button}
                 onPress={() => this.props.login(this.state.email, this.state.password)}
