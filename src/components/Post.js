@@ -39,7 +39,7 @@ class Post extends Component {
         })
         .then(() => {
             this.setState({
-                likes: this.state.likes + 1,
+                likes: this.state.likes + 1, //traer de la base de datos.
                 liked: true
             })
             console.log('likeado');
