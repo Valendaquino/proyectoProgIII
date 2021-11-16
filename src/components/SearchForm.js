@@ -5,7 +5,8 @@ class SearchForm extends Component{
     constructor(props){
         super(props)
         this.state={
-            search:''
+            posteos: [] ,
+            search:" "
         }
     }
     
@@ -45,14 +46,14 @@ const styles = StyleSheet.create({
         marginVertical:10,
     },
     button:{
-        backgroundColor:'#28a745',
+        backgroundColor: '#E3263D',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
         borderRadius:4, 
         borderWidth:1,
         borderStyle: 'solid',
-        borderColor: '#28a745'
+        borderColor: '#E3263D'
     },
     textButton:{
         color: '#fff'
