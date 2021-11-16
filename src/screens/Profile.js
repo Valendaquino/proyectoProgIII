@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     paddingHorizontal:10,
   },
   formContainer:{
-    backgroundColor: '#ccc',
+    backgroundColor: '#FFFFFF',
     marginHorizontal: 10,
     padding:10,
   },
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     height: 250,
   },
   touchable:{
-    backgroundColor: '#ccc',
+    backgroundColor: '#444',
     borderRadius:4,
     marginVertical:10,
   }
