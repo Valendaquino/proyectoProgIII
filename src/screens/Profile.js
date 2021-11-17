@@ -61,6 +61,7 @@ class Profile extends Component{
 const styles = StyleSheet.create({
   container:{
     paddingHorizontal:10,
+    backgroundColor:'grey'
   },
   formContainer:{
     backgroundColor: '#FFFFFF',

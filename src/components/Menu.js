@@ -87,7 +87,7 @@ class Menu extends Component {
         <Drawer.Navigator>
             {this.state.loggedIn === true ? 
                 <>
-                    <Drawer.Screen name="Moment" component={() => <Home /> } /> 
+                    <Drawer.Screen name="Home"  component={() => <Home /> } /> 
                     <Drawer.Screen name="Profile" component={() => <Profile  logout={()=>this.logout()}/> }  />
                     <Drawer.Screen name="New Post" component={(screenProps)=><PostForm screenProps={screenProps}/>}/>
                     </>:<>

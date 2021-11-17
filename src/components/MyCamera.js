@@ -1,6 +1,6 @@
 import { Camera } from "expo-camera";
 import React, { Component } from "react";
-import { Text, View, TouchableOpacity, Image } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { storage } from "../firebase/config";
 
 class MyCamera extends Component {
@@ -69,10 +69,10 @@ class MyCamera extends Component {
             />
             <View>
               <TouchableOpacity onPress={() => this.savePhoto()}>
-                <Text>Aceptar</Text>
+                <Text style={styles.button}>Aceptar</Text>
               </TouchableOpacity>
-              <TouchableOpacity>
-                <Text>Cancelar</Text>
+              <TouchableOpacity onPress={() => this.savePhoto()}>
+                <Text style={styles.button}>Cancelar</Text>
               </TouchableOpacity>
             </View>
           </>
@@ -84,7 +84,7 @@ class MyCamera extends Component {
               ref={(cam) => (this.camera = cam)}
             />
             <TouchableOpacity onPress={() => this.takePicture()}>
-              <Text>Shoot</Text>
+              <Text style={styles.button}>Shoot</Text>
             </TouchableOpacity>
           </>
         )}
@@ -92,5 +92,20 @@ class MyCamera extends Component {
     );
   }
 }
+const styles = StyleSheet.create({
+button:{
+  backgroundColor:'#71CCF7',
+  paddingHorizontal: 10,
+  paddingVertical: 6,
+  textAlign: 'center',
+  borderRadius:4, 
+  borderWidth:1,
+  borderStyle: 'solid',
+  borderColor: '#71CCF7'
+},
+textButton:{
+  color: '#fff'
+}
+})
 
 export default MyCamera;
