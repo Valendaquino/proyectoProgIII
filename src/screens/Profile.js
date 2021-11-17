@@ -41,6 +41,7 @@ class Profile extends Component{
     return(
       <View style={styles.container}>
                 <text>E-mail:{auth.currentUser.email}</text>
+                <text> User:{auth.currentUser.displayName}</text>
                 <TouchableOpacity onPress={()=>this.props.logout()}>LogOut</TouchableOpacity>
                 <FlatList 
                   data= { this.state.posteos }
@@ -49,7 +50,7 @@ class Profile extends Component{
                 />
                 <text>C reation date:{auth.currentUser.metadata.creationTime}</text>
                 <text>Last login:{auth.currentUser.metadata.lastSignInTime}</text>
-                <TouchableOpacity onPress={()=>this.props.logout()}>LogOut</TouchableOpacity>
+                
                 
       </View>
       
