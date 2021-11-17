@@ -41,7 +41,7 @@ class Profile extends Component{
     return(
       <View style={styles.container}>
                 <text>E-mail:{auth.currentUser.email}</text>
-                
+                <TouchableOpacity onPress={()=>this.props.logout()}>LogOut</TouchableOpacity>
                 <FlatList 
                   data= { this.state.posteos }
                   keyExtractor = { post => post.id}
