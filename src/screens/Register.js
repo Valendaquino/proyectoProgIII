@@ -47,17 +47,30 @@ class Register extends Component {
                  ¿Ya tenés una cuenta? ¡Ingresá!
                </Text>
              </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => this.props.register(this.state.email, this.state.userName, this.state.password)}
-        >
-          <Text style={styles.textButton}>Registrar</Text>
-        </TouchableOpacity>
+        
+       
+            <TouchableOpacity
+
+           style={[styles.button, this.state.email && this.state.password && this.state.userName ? styles.buttonEnabled : styles.buttonDisabled]}
+            onPress={() => this.props.register(this.state.email, this.state.userName, this.state.password)}
+          >
+            <Text style={styles.textButton}>Registrar</Text>
+          </TouchableOpacity>
+          
+        
+       
       </View>
     );
   }
 }
 const styles = StyleSheet.create({
+  buttonEnabled: {
+    backgroundColor: '#00ADB5',
+},
+buttonDisabled: {
+    backgroundColor: '#D3D3D3',
+    display: 'none',
+},
   button: {
     backgroundColor: "#71CCF7",
     paddingHorizontal: 10,
