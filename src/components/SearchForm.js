@@ -46,14 +46,14 @@ const styles = StyleSheet.create({
         marginVertical:10,
     },
     button:{
-        backgroundColor: '#E3263D',
+        backgroundColor: '#71CCF7',
         paddingHorizontal: 9,
         paddingVertical: 6,
         textAlign: 'center',
         borderRadius:4, 
         borderWidth:1,
         borderStyle: 'solid',
-        borderColor: '#E3263D'
+        borderColor: '#71CCF7'
     },
     textButton:{
         color: '#fff'

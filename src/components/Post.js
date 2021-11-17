@@ -180,14 +180,14 @@ const styles = StyleSheet.create({
         borderRadius: 5,
     },
     button: {
-        backgroundColor: "#E3263D",
+        backgroundColor: "#71CCF7",
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: "center",
         borderRadius: 4,
         borderWidth: 1,
         borderStyle: "solid",
-        borderColor: "#E3263D",
+        borderColor: "#71CCF7",
     },
     textButton: {
         color: "#fff",
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
     closeModal:{
         alignSelf: 'flex-end',
         padding: 10,
-        backgroundColor: '#dc3545',
+        backgroundColor: '#71CCF7',
         marginTop:2,
         borderRadius: 4,
     },
