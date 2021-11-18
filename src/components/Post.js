@@ -110,7 +110,7 @@ class Post extends Component {
         return (
             <View style={styles.container}>
                 <Image
-                    style={{ flex: 1, width: "100%", height: 200, borderRadius: 4, marginBottom: 10 }}
+                    style={styles.photo}
                     source={{ uri: this.props.postData.data.photo }}
                 />
                 <Text style={styles.containerinfo}> {this.props.postData.data.user} </Text>
@@ -167,7 +167,7 @@ class Post extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        //backgroundColor:'white',
+        backgroundColor:'white',
         marginVertical: 15,
         shadowColor: "#ccc",
         shadowOffset: {
@@ -177,10 +177,20 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.5,
         shadowRadius: 10,
         borderRadius: 5,
+        marginTop:10
         // color:'white'
     },
     containerinfo: {
         color: 'black'
+    },
+    photo:{ 
+    flex: 1,
+    width: "90%",
+    height: 200,
+    borderRadius: 4, 
+    marginBottom: 10,
+    marginTop:10,
+   marginLeft:20,
     },
     button: {
         backgroundColor: "#71CCF7",
@@ -195,10 +205,7 @@ const styles = StyleSheet.create({
     textButton: {
         color: "black",
     },
-    //likescoment:{
-    //    display:'react fragment'
-
-    // },
+    
     modalContainer: {
         width: '100%',
         flex: 3,

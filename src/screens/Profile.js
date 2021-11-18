@@ -53,7 +53,7 @@ class Profile extends Component{
       <View style={styles.container}>
                 <text>E-mail:{auth.currentUser.email}</text>
                 <text> User:{auth.currentUser.displayName}</text>
-                <TouchableOpacity style={styles.button} onPress={()=>this.props.logout()} >LogOut</TouchableOpacity>
+                
                 <FlatList 
                   data= { this.state.posteos }
                   keyExtractor = { post => post.id}
@@ -65,6 +65,7 @@ class Profile extends Component{
                     </>
                   }
                 />
+                <TouchableOpacity style={styles.button} onPress={()=>this.props.logout()} >LogOut</TouchableOpacity>
                 <text>Creation date:{auth.currentUser.metadata.creationTime}</text>
                 <text>Last login:{auth.currentUser.metadata.lastSignInTime}</text>
                 
@@ -89,7 +90,7 @@ const styles = StyleSheet.create({
     borderColor: '#444',
     borderWidth:1,
     borderStyle: 'solid',
-    height: 20,
+    height: 50,
     paddingHorizontal: 20,
     paddingVertical:10
   },

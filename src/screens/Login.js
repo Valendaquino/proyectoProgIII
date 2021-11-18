@@ -27,7 +27,7 @@ class Login extends Component{
       
     render(){
         return (
-            <View>
+            <View style={styles.containerLogin} >
              { //preguntar si se puede
               this.state.err ? ( 
                 <Text style={styles.hide}>{this.props.error}</Text>
@@ -35,13 +35,14 @@ class Login extends Component{
                 <Text>{this.props.error}</Text>
               )
             }
-             <TextInput
+            <img src="https://img.icons8.com/fluency/96/000000/multiple-choice.png"/>
+             <TextInput style={styles.containerInput}
              onKeyPress={()=>this.clearErr()}
              onChangeText={(text)=> this.setState({email:text})}
              placeholder="email"
              keyboardType="email-addres"
              />
-             <TextInput
+             <TextInput style={styles.containerInput}
              onChangeText={(text)=> this.setState({password:text})}
              placeholder="password"
              keyboardType="email-addres"
@@ -64,9 +65,24 @@ class Login extends Component{
             }
           }
           const styles = StyleSheet.create({
-           
+            containerLogin:{
+              backgroundColor:"white",
+              height:"50%",
+              with:"70%",
+              borderRadius:'20%',
+              justifyContent:'center',
+              alignItems:'center',
+              marginTop:"10%",
+              marginLeft:"5%",
+              marginRight:"5%"
+            }, 
+            containerInput:{
+              backgroundColor:"white",
+              width:300,
+              height:40,
+            },
             buttonEnabled: {
-              backgroundColor: '#00ADB5',
+              backgroundColor: 'green',
           },
           buttonDisabled: {
               backgroundColor: '#D3D3D3',
@@ -75,14 +91,18 @@ class Login extends Component{
            
            
             button: {
-              backgroundColor: "#71CCF7",
+              backgroundColor: "green",
+              height:50,
+              width:100,
               paddingHorizontal: 10,
               paddingVertical: 6,
               textAlign: "center",
+              justifyContent:"center",
               borderRadius: 4,
               borderWidth: 1,
               borderStyle: "solid",
               borderColor: "#71CCF7",
+              marginTop: 10
             },
             textButton: {
               color: "#fff",

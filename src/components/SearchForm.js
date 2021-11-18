@@ -22,7 +22,7 @@ class SearchForm extends Component{
                     placeholder='Search post'
                     keyboardType='default'
                     />
-                <TouchableOpacity style={styles.button} onPress={()=>this.props.searchPost(this.state.search)}>
+                <TouchableOpacity style={styles.buttonSearch} onPress={()=>this.props.searchPost(this.state.search)}>
                     <Text style={styles.textButton}>Search</Text>    
                 </TouchableOpacity>
             </View>
@@ -34,6 +34,10 @@ const styles = StyleSheet.create({
     formContainer:{
         paddingHorizontal:10,
         marginTop: 20,
+        backgroundColor:"white",
+        flex: 1,
+        flexDirection:"row",
+        width: "100%"
     },
     multilineInput:{
         height:95,
@@ -45,7 +49,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginVertical:10,
     },
-    button:{
+    buttonSearch:{
         backgroundColor: '#71CCF7',
         paddingHorizontal: 9,
         paddingVertical: 6,
@@ -53,7 +57,9 @@ const styles = StyleSheet.create({
         borderRadius:4, 
         borderWidth:1,
         borderStyle: 'solid',
-        borderColor: '#71CCF7'
+        borderColor: '#71CCF7',
+       paddingLeft:50
+        
         
     },
     textButton:{
