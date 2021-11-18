@@ -57,6 +57,14 @@ class MyCamera extends Component {
       })
       .catch((err) => console.log(err));
   }
+  deletePhoto() {
+    //console.log("guardar foto en firebase");
+    fetch(this.state.photo)
+      .then((res) => this.setState({
+        photo:''
+      }))
+      .catch((err) => console.log(err));
+  }
 
   render() {
     return (
@@ -71,7 +79,7 @@ class MyCamera extends Component {
               <TouchableOpacity onPress={() => this.savePhoto()}>
                 <Text style={styles.button}>Aceptar</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => this.savePhoto()}>
+              <TouchableOpacity onPress={() => this.deletePhoto()}>
                 <Text style={styles.button}>Cancelar</Text>
               </TouchableOpacity>
             </View>

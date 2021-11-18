@@ -51,8 +51,8 @@ class Profile extends Component{
     return(
       <View style={styles.container}>
                 <text>E-mail:{auth.currentUser.email}</text>
-                <text> User:{auth.currentUser.displayName}</text>
-                <TouchableOpacity onPress={()=>this.props.logout()}>LogOut</TouchableOpacity>
+                <text> User:{auth.currentUser.diplayName}</text>
+                <TouchableOpacity style={styles.button} onPress={()=>this.props.logout()} >LogOut</TouchableOpacity>
                 <FlatList 
                   data= { this.state.posteos }
                   keyExtractor = { post => post.id}
@@ -77,7 +77,7 @@ class Profile extends Component{
 const styles = StyleSheet.create({
   container:{
     paddingHorizontal:10,
-    backgroundColor:'grey'
+    backgroundColor:'white'
   },
   formContainer:{
     backgroundColor: '#FFFFFF',
@@ -99,7 +99,20 @@ const styles = StyleSheet.create({
     backgroundColor: '#444',
     borderRadius:4,
     marginVertical:10,
-  }
+  },
+  button: {
+    backgroundColor: "#71CCF7",
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    textAlign: "center",
+    borderRadius: 4,
+    borderWidth: 1,
+    borderStyle: "solid",
+    borderColor: "#71CCF7",
+},
+textButton: {
+    color: "black",
+}
 })
 
 export default Profile;
