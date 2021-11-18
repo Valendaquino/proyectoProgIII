@@ -113,26 +113,23 @@ class Post extends Component {
                     style={{ flex: 1, width: "100%", height:200, borderRadius: 4, marginBottom:10 }}
                     source={{ uri: this.props.postData.data.photo}}
                     />
-                <Text> {this.props.postData.data.user} </Text>
-                <Text> {this.props.postData.data.description} </Text>
-=
-                <TouchableOpacity onPress={() => this.showModal()}>
-                    <Text>Likes: {this.state.likes}</Text>
-                </TouchableOpacity>
+                <Text style={styles.containerinfo}> {this.props.postData.data.user} </Text>
+                <Text style={styles.containerinfo}> {this.props.postData.data.description} </Text>
+               <display style={styles.likescoment}>
                 {
                     ! this.state.liked ?
                         <TouchableOpacity style={styles.button} onPress={() => this.likePost()}>
-                            <Text style={styles.textButton}>Likear</Text>
+                            <Text style={styles.textButton}><img src="https://img.icons8.com/small/16/000000/like.png"/> {this.state.likes}</Text>
                         </TouchableOpacity>
                     :
                         <TouchableOpacity style={styles.button} onPress={() => this.unlikePost()}>
-                            <Text style={styles.textButton}>Deslikear</Text>
+                            <Text style={styles.textButton}><img src="https://img.icons8.com/ios-filled/16/000000/like--v1.png"/> {this.state.likes}</Text>
                         </TouchableOpacity>
                 }
                 {/* MODAL  */}
-
-                <TouchableOpacity onPress={() => this.showModal()}>
-                    <Text>Comments: {this.props.postData.data.comments.length}</Text>
+                </display>
+                <TouchableOpacity style={styles.button} onPress={() => this.showModal()}>
+                    <Text style={styles.textButton}> <img src="https://img.icons8.com/small/16/000000/topic--v1.png"/> {this.props.postData.data.comments.length}</Text>
                 </TouchableOpacity>
 
                 {/* Modal comentarios */}
@@ -169,6 +166,7 @@ class Post extends Component {
            
 const styles = StyleSheet.create({
     container: {
+        //backgroundColor:'white',
         marginVertical: 15,
         shadowColor: "#ccc",
         shadowOffset: {
@@ -178,6 +176,10 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.5,
         shadowRadius: 10,
         borderRadius: 5,
+       // color:'white'
+    },
+    containerinfo:{
+        color:'black'
     },
     button: {
         backgroundColor: "#71CCF7",
@@ -190,8 +192,12 @@ const styles = StyleSheet.create({
         borderColor: "#71CCF7",
     },
     textButton: {
-        color: "#fff",
+        color: "black",
     },
+    //likescoment:{
+    //    display:'react fragment'
+
+   // },
     modalContainer: {
         width:'100%',  
         flex: 3,

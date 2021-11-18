@@ -54,11 +54,14 @@ const styles = StyleSheet.create({
         borderWidth:1,
         borderStyle: 'solid',
         borderColor: '#71CCF7'
+        
     },
     textButton:{
-        color: '#fff'
+        color: 'black'
+    },
+    TextInput:{
+        backgroundColor: "white"
     }
-
 })
 
 export default SearchForm;

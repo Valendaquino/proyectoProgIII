@@ -14,7 +14,7 @@ class CommentForm extends Component{
     render(){
         return(
             <View style={styles.formContainer}>
-                <Text>Comentarios</Text>
+              
                 <TextInput
                     style={styles.multilineInput}
                     onChangeText={(text)=>this.setState({comment: text})}
@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     formContainer:{
         paddingHorizontal:10,
         marginTop: 20,
+        marginBottom:90
     },
     multilineInput:{
         height:100,
@@ -44,6 +45,7 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderRadius: 6,
         marginVertical:10,
+        
     },
     button:{
         backgroundColor:'#71CCF7',

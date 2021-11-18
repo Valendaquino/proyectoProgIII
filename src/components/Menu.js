@@ -31,17 +31,28 @@ class Menu extends Component {
      }
  })
  }
-  register(email, password) {
+  register(email, userName, password) {
     auth
       .createUserWithEmailAndPassword(email, password)
-      .then((userData) => { 
-         this.setState({loggedIn: true,
-                       // error: "",
-        }) ; 
+      .then( (userData) => {
+        this.setState({loggedIn: true, error: "",
+            }) ; 
+        userData.user.updateProfile({
+            displayName: userName
+        })
     })
-      .catch((err) =>  
-         this.setState({error: err.message})
-    );
+    .then(() => console.log('Usuario registrado exitosamente!'))
+    .catch(err => {
+        this.setState({error: err.message})
+    })
+     // .then((userData) => { 
+      //   this.setState({loggedIn: true,
+      //                 // error: "",
+      //  }) ; 
+    //})
+     // .catch((err) =>  
+    //     this.setState({error: err.message})
+    //);
   }
   login(email, password) {
     auth
@@ -76,12 +87,12 @@ class Menu extends Component {
         <Drawer.Navigator>
             {this.state.loggedIn === true ? 
                 <>
-                    <Drawer.Screen name="Home" component={() => <Home /> } /> 
+                    <Drawer.Screen name="Home"  component={() => <Home /> } /> 
                     <Drawer.Screen name="Profile" component={() => <Profile  logout={()=>this.logout()}/> }  />
                     <Drawer.Screen name="New Post" component={(screenProps)=><PostForm screenProps={screenProps}/>}/>
                     </>:<>
                     <Drawer.Screen name="Login" component={(screenProps) => <Login screenProps={screenProps} login={(email, pass) => this.login(email,pass)} error={this.state.error}/>} />
-                    <Drawer.Screen name="Register"  component={(screenProps) => <Register screenProps={screenProps} register={(email, pass) => this.register(email,pass)} error={this.state.error}/>} />
+                    <Drawer.Screen name="Register"  component={(screenProps) => <Register screenProps={screenProps} register={(email, userName, pass) => this.register(email,userName, pass)} error={this.state.error}/>} />
                 </>
         }
         </Drawer.Navigator>
