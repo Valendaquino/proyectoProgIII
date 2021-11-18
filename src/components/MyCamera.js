@@ -50,17 +50,18 @@ class MyCamera extends Component {
                     .then((url) => {
                         this.props.onImageUpload(url)
                         this.setState({
-                        photo: "",
-            });
+                          photo: "",
+                        });
           });
         });
       })
+
       .catch((err) => console.log(err));
   }
   deletePhoto() {
     //console.log("guardar foto en firebase");
     fetch(this.state.photo)
-      .then((res) => this.setState({
+      .then(() => this.setState({
         photo:''
       }))
       .catch((err) => console.log(err));
