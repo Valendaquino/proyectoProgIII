@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, Modal,Image, TouchableOpacity,FlatList } from 'react-native'
+import { Text, StyleSheet, View, Modal, Image, TouchableOpacity, FlatList } from 'react-native'
 import { auth, db } from '../firebase/config'
 import firebase from 'firebase'
 import CommentForm from './CommentForm'
@@ -10,16 +10,16 @@ class Post extends Component {
         this.state = {
             likes: 0,
             liked: false,
-            showModal:false,
-            comment:''
+            showModal: false,
+            comment: ''
         }
     }
 
-   componentDidMount() {
+    componentDidMount() {
         this.recieveLikes();
     }
 
-   recieveLikes() {
+    recieveLikes() {
         let likes = this.props.postData.data.likes;
         console.log(likes);
         if (likes) {
@@ -27,7 +27,7 @@ class Post extends Component {
                 likes: likes.length
             })
         }
-        if(likes.includes(auth.currentUser.email)) {    
+        if (likes.includes(auth.currentUser.email)) {
             this.setState({
                 liked: true
             })
@@ -40,17 +40,17 @@ class Post extends Component {
         post.update({
             likes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)
         })
-        .then(() => {
-            this.setState({
-                likes:this.props.postData.data.likes.length,
-                // this.state.likes + 1, //traer de la base de datos.
-                liked: true
+            .then(() => {
+                this.setState({
+                    likes: this.props.postData.data.likes.length,
+                    // this.state.likes + 1, //traer de la base de datos.
+                    liked: true
+                })
+                console.log('likeado');
             })
-            console.log('likeado');
-        })
-        .catch((error) => {
-            console.error("Error updating document: ", error); 
-        });
+            .catch((error) => {
+                console.error("Error updating document: ", error);
+            });
     }
 
     unlikePost() {
@@ -59,49 +59,49 @@ class Post extends Component {
         post.update({
             likes: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
         })
-        .then(() => {
-            this.setState({
-                likes: this.props.postData.data.likes.length,
-                liked: false
+            .then(() => {
+                this.setState({
+                    likes: this.props.postData.data.likes.length,
+                    liked: false
+                })
+                console.log('deslikeado');
             })
-            console.log('deslikeado');
-        })
-        .catch((error) => {
-            console.error("Error updating document: ", error);
-        });
+            .catch((error) => {
+                console.error("Error updating document: ", error);
+            });
     }
 
-    showModal(){
+    showModal() {
         this.setState({
-            showModal:true,
+            showModal: true,
         })
     }
 
-    hideModal(){
+    hideModal() {
         this.setState({
-            showModal:false,
+            showModal: false,
         })
     }
-    guardarComentario(algo){
+    guardarComentario(algo) {
         //console.log(algo)
         let oneComment = {
             createdAt: Date.now(),
             user: auth.currentUser.email,
-            comment: algo, 
+            comment: algo,
         }
-         db.collection('posts').doc(this.props.postData.id).update({
-           comments:firebase.firestore.FieldValue.arrayUnion(oneComment)
+        db.collection('posts').doc(this.props.postData.id).update({
+            comments: firebase.firestore.FieldValue.arrayUnion(oneComment)
         })
-        .then(()=>{
-            this.setState({
-                showModal:false,
-                comment:''
-            })
-        }
-        )
+            .then(() => {
+                this.setState({
+                    showModal: false,
+                    comment: ''
+                })
+            }
+            )
 
     }
-    
+
 
 
 
@@ -109,54 +109,54 @@ class Post extends Component {
     render() {
         return (
             <View style={styles.container}>
-                 <Image
-                    style={{ flex: 1, width: "100%", height:200, borderRadius: 4, marginBottom:10 }}
-                    source={{ uri: this.props.postData.data.photo}}
-                    />
+                <Image
+                    style={{ flex: 1, width: "100%", height: 200, borderRadius: 4, marginBottom: 10 }}
+                    source={{ uri: this.props.postData.data.photo }}
+                />
                 <Text style={styles.containerinfo}> {this.props.postData.data.user} </Text>
                 {//preguntar si se puede poner un displayname
                 }
                 <Text style={styles.containerinfo}> {this.props.postData.data.description} </Text>
-              
-                {
-                    ! this.state.liked ?
-                        <TouchableOpacity style={styles.button} onPress={() => this.likePost()}>
-                            <Text style={styles.textButton}><img src="https://img.icons8.com/small/16/000000/like.png"/> {this.state.likes}</Text>
-                        </TouchableOpacity>
-                    :
-                        <TouchableOpacity style={styles.button} onPress={() => this.unlikePost()}>
-                            <Text style={styles.textButton}><img src="https://img.icons8.com/ios-filled/16/000000/like--v1.png"/> {this.state.likes}</Text>
-                        </TouchableOpacity>
-                }
-                {/* MODAL  */}
-                <TouchableOpacity style={styles.button} onPress={() => this.showModal()}>
-                    <Text style={styles.textButton}> <img src="https://img.icons8.com/small/16/000000/topic--v1.png"/> {this.props.postData.data.comments.length}</Text>
-                </TouchableOpacity>
-                
+                <View style={{flex: 1, flexDirection:"row", width: "100%"}}>
+                    {
+                        !this.state.liked ?
+                            <TouchableOpacity style={styles.button} onPress={() => this.likePost()}>
+                                <Text style={styles.textButton}><img src="https://img.icons8.com/small/16/000000/like.png" /> {this.state.likes}</Text>
+                            </TouchableOpacity>
+                            :
+                            <TouchableOpacity style={styles.button} onPress={() => this.unlikePost()}>
+                                <Text style={styles.textButton}><img src="https://img.icons8.com/ios-filled/16/000000/like--v1.png" /> {this.state.likes}</Text>
+                            </TouchableOpacity>
+                    }
+                    {/* MODAL  */}
+                    <TouchableOpacity style={styles.button} onPress={() => this.showModal()}>
+                        <Text style={styles.textButton}> <img src="https://img.icons8.com/small/16/000000/topic--v1.png" /> {this.props.postData.data.comments.length}</Text>
+                    </TouchableOpacity>
+                </View>
                 {/* Modal comentarios */}
-            {   this.state.showModal ?
-                <Modal style={styles.modalContainer}
-                    visible={this.state.showModal}
-                    animationType='slide'
-                    transparent={false}
-                >   
-                    <TouchableOpacity onPress={()=>this.hideModal()}>
-                        <Text style={styles.closeModal}>X</Text>
-                    </TouchableOpacity> 
+                {this.state.showModal ?
+                    <Modal style={styles.modalContainer}
+                        visible={this.state.showModal}
+                        animationType='slide'
+                        transparent={false}
+                    >
+                        <TouchableOpacity onPress={() => this.hideModal()}>
+                            <Text style={styles.closeModal}>X</Text>
+                        </TouchableOpacity>
 
-                    <FlatList
-                        data={this.props.postData.data.comments}
-                        keyExtractor={comment=>comment.createdAt.toString()}
-                        renderItem={({item})=>(
-                                <Text>{item.user}: {item.comment}</Text> 
-                        )}
+                        <FlatList
+                            data={this.props.postData.data.comments}
+                            keyExtractor={comment => comment.createdAt.toString()}
+                            renderItem={({ item }) => (
+                                <Text>{item.user}: {item.comment}</Text>
+                            )}
 
-                    />
-                    <CommentForm guardarComentario={(algo)=> this.guardarComentario(algo)} />
+                        />
+                        <CommentForm guardarComentario={(algo) => this.guardarComentario(algo)} />
 
-                </Modal>    :
-                <Text></Text>
-            } 
+                    </Modal> :
+                    <Text></Text>
+                }
 
 
             </View>
@@ -164,7 +164,7 @@ class Post extends Component {
     }
 
 }
-           
+
 const styles = StyleSheet.create({
     container: {
         //backgroundColor:'white',
@@ -177,10 +177,10 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.5,
         shadowRadius: 10,
         borderRadius: 5,
-       // color:'white'
+        // color:'white'
     },
-    containerinfo:{
-        color:'black'
+    containerinfo: {
+        color: 'black'
     },
     button: {
         backgroundColor: "#71CCF7",
@@ -198,9 +198,9 @@ const styles = StyleSheet.create({
     //likescoment:{
     //    display:'react fragment'
 
-   // },
+    // },
     modalContainer: {
-        width:'100%',  
+        width: '100%',
         flex: 3,
         alignSelf: 'center',
         backgroundColor: "white",
@@ -209,17 +209,23 @@ const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: 'white'
     },
-    closeModal:{
+    closeModal: {
         alignSelf: 'flex-end',
         padding: 10,
         backgroundColor: '#71CCF7',
-        marginTop:2,
+        marginTop: 2,
         borderRadius: 4,
     },
-    modalText:{
+    modalText: {
         fontWeight: 'bold',
-        color:'white',
+        color: 'white',
     },
+    comments: {
+        flexDirection: "column",
+        borderColor: "black",
+        borderStyle: "solid",
+        borderWidth: "1"
+    }
 
 });
 

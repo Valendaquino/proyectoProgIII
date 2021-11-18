@@ -37,7 +37,7 @@ class Profile extends Component{
       )
   }
   deletePost(id){
-   
+    
       db.collection("posts")
         .doc(id).delete()
           .then((post) => {
@@ -58,7 +58,7 @@ class Profile extends Component{
                   keyExtractor = { post => post.id}
                   renderItem = { ({item}) => 
                     <>
-                      <TouchableOpacity onPress={this.deletePost()}>x</TouchableOpacity>
+                      <TouchableOpacity onPress={()=>this.deletePost(item.id)}>x</TouchableOpacity>
                       <Post postData={item}/>
                       
                     </>
