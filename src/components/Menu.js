@@ -33,7 +33,7 @@ class Menu extends Component {
  }
   register(email, userName, password) {
     auth
-      .createUserWithEmailAndPassword(email,userName, password)
+      .createUserWithEmailAndPassword(email, password)
       .then( (userData) => {
         this.setState({loggedIn: true, error: "",
             }) ; 

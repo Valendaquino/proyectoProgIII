@@ -11,6 +11,7 @@ class PostForm extends Component{
             showCamera: true
         };
     }
+  
     submitPost(){
         db.collection('posts').add({
             user: auth.currentUser.email,
@@ -23,6 +24,7 @@ class PostForm extends Component{
         .then( ()=>{ 
             this.setState({
                 textoPost:'',
+                showCamera: true
             })
   
             this.props.screenProps.navigation.navigate('Home')
