@@ -13,21 +13,35 @@ class Register extends Component {
     this.state = {
       email: "",
       password: "",
-      userName: ""
+      userName: "",
+      err: false
      
     };
   }
   navigationToLogin(){
     this.props.screenProps.navigation.navigate('Login')
   }
+ clearErr(){
+   this.setState({
+     err: true
+   })
+ }
+   
   render() {
     
     return (
       <View>
-        <Text>{this.props.error}</Text>
-        <Text>Register</Text>
+        { //preguntar si se puede
+          this.state.err ? ( 
+            <Text style={styles.hide}>{this.props.error}</Text>
+          ):(
+            <Text>{this.props.error}</Text>
+          )
+        }
+       
         <TextInput
-          onChangeText={(text) => this.setState({ email: text })}
+          onKeyPress={()=>this.clearErr()}
+          onChangeText={(text) => this.setState({ email: text})}
           placeholder="email"
           keyboardType="email-address"
         />
@@ -51,7 +65,7 @@ class Register extends Component {
        
             <TouchableOpacity
 
-           style={[styles.button, this.state.email && this.state.password && this.state.userName ? styles.buttonEnabled : styles.buttonDisabled]}
+            style={[styles.button, this.state.email && this.state.password && this.state.userName ? styles.buttonEnabled : styles.buttonDisabled]}
             onPress={() => this.props.register(this.state.email, this.state.userName, this.state.password)}
           >
             <Text style={styles.textButton}>Registrar</Text>
@@ -84,6 +98,9 @@ buttonDisabled: {
   textButton: {
     color: "white",
   },
+  hide:{
+    display: 'none'
+  }
 });
 
 export default Register;

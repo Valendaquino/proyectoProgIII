@@ -45,21 +45,15 @@ class Menu extends Component {
     .catch(err => {
         this.setState({error: err.message})
     })
-     // .then((userData) => { 
-      //   this.setState({loggedIn: true,
-      //                 // error: "",
-      //  }) ; 
-    //})
-     // .catch((err) =>  
-    //     this.setState({error: err.message})
-    //);
+    
   }
+  
   login(email, password) {
     auth
       .signInWithEmailAndPassword(email, password)
       .then((userData) => { 
           this.setState({loggedIn: true,  
-                       // error: "",
+                       error: "",
         }) 
 
     ;})
@@ -80,7 +74,6 @@ class Menu extends Component {
      
  }
 
- 
   render() {
   
     return (
@@ -92,7 +85,7 @@ class Menu extends Component {
                     <Drawer.Screen name="New Post" component={(screenProps)=><PostForm screenProps={screenProps}/>}/>
                     </>:<>
                     <Drawer.Screen name="Login" component={(screenProps) => <Login screenProps={screenProps} login={(email, pass) => this.login(email,pass)} error={this.state.error}/>} />
-                    <Drawer.Screen name="Register"  component={(screenProps) => <Register screenProps={screenProps} register={(email, userName, pass) => this.register(email,userName, pass)} error={this.state.error}/>} />
+                    <Drawer.Screen name="Register"  component={(screenProps) => <Register screenProps={screenProps} register={(email, userName, pass) => this.register(email,userName, pass)} error={this.state.error} />}  />
                 </>
         }
         </Drawer.Navigator>

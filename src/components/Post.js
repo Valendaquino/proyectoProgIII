@@ -114,8 +114,10 @@ class Post extends Component {
                     source={{ uri: this.props.postData.data.photo}}
                     />
                 <Text style={styles.containerinfo}> {this.props.postData.data.user} </Text>
+                {//preguntar si se puede poner un displayname
+                }
                 <Text style={styles.containerinfo}> {this.props.postData.data.description} </Text>
-               <display style={styles.likescoment}>
+              
                 {
                     ! this.state.liked ?
                         <TouchableOpacity style={styles.button} onPress={() => this.likePost()}>
@@ -127,11 +129,10 @@ class Post extends Component {
                         </TouchableOpacity>
                 }
                 {/* MODAL  */}
-                </display>
                 <TouchableOpacity style={styles.button} onPress={() => this.showModal()}>
                     <Text style={styles.textButton}> <img src="https://img.icons8.com/small/16/000000/topic--v1.png"/> {this.props.postData.data.comments.length}</Text>
                 </TouchableOpacity>
-
+                
                 {/* Modal comentarios */}
             {   this.state.showModal ?
                 <Modal style={styles.modalContainer}

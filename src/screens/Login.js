@@ -13,16 +13,30 @@ class Login extends Component{
         this.state={
             email: "",
             password: "",
+            err: false
         }  
     }
     navigationToRegister(){
       this.props.screenProps.navigation.navigate('Register')
     }
+    clearErr(){
+      this.setState({
+        err: true
+      })
+    }
+      
     render(){
         return (
             <View>
-            <Text>{this.props.error}</Text>
+             { //preguntar si se puede
+              this.state.err ? ( 
+                <Text style={styles.hide}>{this.props.error}</Text>
+              ):(
+                <Text>{this.props.error}</Text>
+              )
+            }
              <TextInput
+             onKeyPress={()=>this.clearErr()}
              onChangeText={(text)=> this.setState({email:text})}
              placeholder="email"
              keyboardType="email-addres"
@@ -73,6 +87,9 @@ class Login extends Component{
             textButton: {
               color: "#fff",
             },
+            hide:{
+              display: 'none'
+            }
            
           });
     export default Login;

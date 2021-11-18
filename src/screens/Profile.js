@@ -19,22 +19,32 @@ class Profile extends Component{
         .where('user', '==',auth.currentUser.email)
         //.orderBy('createdAt', 'desc') // 1 propiedad sobre la que queres aplicar un orden
         .onSnapshot(
-        docs => {
-          console.log(docs);
-          let posts = [];
-          docs.forEach( doc => {
-            posts.push({
-              id: doc.id,
-              data: doc.data(),
-            })
-          })
-          console.log(posts);
+          (docs) => {
+              console.log(docs);
+              let posts = [];
+              docs.forEach( doc => {
+                    posts.push({
+                      id: doc.id,
+                      data: doc.data(),
+                    })
+              })
+            console.log(posts);
   
-          this.setState({
-            posteos: posts,
-          })
+            this.setState({
+              posteos: posts,
+            })
         }
       )
+  }
+  deletePost(id){
+   
+      db.collection("posts")
+        .doc(id).delete()
+          .then((post) => {
+            console.log(post.id);
+        }).catch((error) => {
+            console.error("Error removing document: ", error);
+        });
   }
   render(){
    
@@ -46,9 +56,15 @@ class Profile extends Component{
                 <FlatList 
                   data= { this.state.posteos }
                   keyExtractor = { post => post.id}
-                  renderItem = { ({item}) => <Post postData={item}/>}
+                  renderItem = { ({item}) => 
+                    <>
+                      <TouchableOpacity onPress={this.deletePost()}>x</TouchableOpacity>
+                      <Post postData={item}/>
+                      
+                    </>
+                  }
                 />
-                <text>C reation date:{auth.currentUser.metadata.creationTime}</text>
+                <text>Creation date:{auth.currentUser.metadata.creationTime}</text>
                 <text>Last login:{auth.currentUser.metadata.lastSignInTime}</text>
                 
                 
