@@ -20,8 +20,12 @@ class Menu extends Component {
       loggedIn: false,
       userData: {},
       error: "",
+      
+
     };
   }
+
+
   componentDidMount(){
     auth.onAuthStateChanged((user)=>{
      if(user!==null){
@@ -73,6 +77,10 @@ class Menu extends Component {
        .catch(err=> console.log(err))
      
  }
+
+  
+
+
 
   render() {
   

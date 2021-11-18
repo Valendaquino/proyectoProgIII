@@ -61,7 +61,10 @@ class Home extends Component{
 
   render(){
     return(
-      <View style={styles.container}>
+     
+     <View style={styles.container} >
+     
+       
        <SearchForm searchPost={(user)=>this.searchPost(user)}/>
         <FlatList 
           data= { this.state.posteos }
