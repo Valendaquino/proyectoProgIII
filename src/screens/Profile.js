@@ -12,6 +12,7 @@ class Profile extends Component{
   }
   componentDidMount(){
     this.showPost();
+    console.log(auth.currentUser.displayName);
   
    }
   showPost(){
@@ -51,7 +52,7 @@ class Profile extends Component{
     return(
       <View style={styles.container}>
                 <text>E-mail:{auth.currentUser.email}</text>
-                <text> User:{auth.currentUser.diplayName}</text>
+                <text> User:{auth.currentUser.displayName}</text>
                 <TouchableOpacity style={styles.button} onPress={()=>this.props.logout()} >LogOut</TouchableOpacity>
                 <FlatList 
                   data= { this.state.posteos }
