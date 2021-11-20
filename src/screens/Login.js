@@ -69,7 +69,7 @@ class Login extends Component{
               backgroundColor:"white",
               height:"90%",
               with:"70%",
-              borderRadius:'10%',
+              borderRadius:'50%',
               justifyContent:'center',
               alignItems:'center',
               marginTop:"10%",
@@ -77,9 +77,15 @@ class Login extends Component{
               marginRight:"5%"
             }, 
             containerInput:{
-              backgroundColor:"white",
-              width:300,
-              height:80,
+              backgroundColor:"#C6E0F9",
+              width:400 ,
+              height:50,
+              borderRadius: "15px",
+              marginTop:"5%",
+              marginLeft:"5%",
+              marginRight:"5%",
+            
+              
             },
             buttonEnabled: {
               backgroundColor: 'green',
