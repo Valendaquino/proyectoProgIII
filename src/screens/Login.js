@@ -67,9 +67,9 @@ class Login extends Component{
           const styles = StyleSheet.create({
             containerLogin:{
               backgroundColor:"white",
-              height:"50%",
+              height:"90%",
               with:"70%",
-              borderRadius:'20%',
+              borderRadius:'10%',
               justifyContent:'center',
               alignItems:'center',
               marginTop:"10%",
@@ -79,7 +79,7 @@ class Login extends Component{
             containerInput:{
               backgroundColor:"white",
               width:300,
-              height:40,
+              height:80,
             },
             buttonEnabled: {
               backgroundColor: 'green',

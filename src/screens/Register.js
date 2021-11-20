@@ -56,7 +56,7 @@ class Register extends Component {
           keyboardType="email-address"
           secureTextEntry={true}
         />
-         <TouchableOpacity onPress={()=> this.navigationToLogin()}>
+         <TouchableOpacity  style={styles.texto} onPress={()=> this.navigationToLogin()}>
                <Text>
                  ¿Ya tenés una cuenta? ¡Ingresá!
                </Text>
@@ -80,9 +80,9 @@ class Register extends Component {
 const styles = StyleSheet.create({
   containerRegister:{
     backgroundColor:"white",
-    height:"50%",
+    height:"90%",
     with:"70%",
-    borderRadius:'20%',
+    borderRadius:'10%',
     justifyContent:'center',
     alignItems:'center',
     marginTop:"10%",
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   containerInput:{
     backgroundColor:"white",
     width:300,
-    height:40,
+    height:80,
   },
   buttonEnabled: {
     backgroundColor: 'green',
@@ -100,6 +100,12 @@ const styles = StyleSheet.create({
 buttonDisabled: {
     backgroundColor: '#D3D3D3',
     display: 'none',
+},
+texto:{
+  marginTop:20,
+height:20,
+//fontSize:"20%"
+
 },
   button: {
     backgroundColor: "green",

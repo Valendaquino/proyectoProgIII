@@ -32,12 +32,15 @@ class SearchForm extends Component{
 
 const styles = StyleSheet.create({
     formContainer:{
+        height:'30%',
         paddingHorizontal:10,
-        marginTop: 20,
-        backgroundColor:"white",
+        marginTop: 30,
+        marginBottom:30,
+        backgroundColor:"blue",
         flex: 1,
         flexDirection:"row",
-        width: "100%"
+        width: "100%",
+        backgroundColor:"grey"
     },
     multilineInput:{
         height:95,
