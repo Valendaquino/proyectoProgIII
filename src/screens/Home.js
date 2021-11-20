@@ -77,8 +77,8 @@ this.setState({
     return(
       
 
-<view>
-  <view style= {{height: "100%" , width: "100%",
+<View>
+  <View style= {{height: "100%" , width: "100%",
   justifyContent: "center", alignItems: "center"
    }}>
 
@@ -86,16 +86,16 @@ this.setState({
        this.state.showME ?
        <ActivityIndicator size= "large" color= "#7BBBFA"/>
      :
-     <view>
+     <View>
      <Text></Text>
-   </view>
+   </View>
          }
 
 
 
 
  
-  </view>
+  </View>
       <View style={styles.container}>
        <SearchForm searchPost={(user)=>this.searchPost(user)}/>
         <FlatList 
@@ -104,7 +104,7 @@ this.setState({
           renderItem = { ({item}) => <Post postData={item}/>}
         />
       </View>
-      </view>
+      </View>
      )
   }
 }

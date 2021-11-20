@@ -67,8 +67,8 @@ this.setState({
    
     return(
 
-<view>
-  <view style= {{height: "100%" , width: "100%",
+<View>
+  <View style= {{height: "100%" , width: "100%",
   justifyContent: "center", alignItems: "center"
    }}>
 
@@ -76,12 +76,12 @@ this.setState({
        this.state.showME ?
        <ActivityIndicator size= "large" color= "#7BBBFA"/>
      :
-     <view>
+     <View>
      <Text></Text>
-   </view>
+   </View>
          }
 
-</view> 
+</View> 
 
 <View style={styles.container}>
                 <text>E-mail:{auth.currentUser.email}</text>
