@@ -104,7 +104,7 @@ this.setState({
                 
               
       </View>
-      </view>
+      </View>
       
     )
   }
