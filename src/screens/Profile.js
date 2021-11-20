@@ -8,6 +8,7 @@ class Profile extends Component{
     super(props);
     this.state ={
       posteos: [],
+      showME:true,
     }
   }
   componentDidMount(){
@@ -47,10 +48,42 @@ class Profile extends Component{
             console.error("Error removing document: ", error);
         });
   }
+  
+  componentWillMount()
+{
+  setTimeout(()=>{
+this.setState({
+  showME:false
+})
+  },
+  3000)
+}
+  
+  
+  
+  
+  
   render(){
    
     return(
-      <View style={styles.container}>
+
+<view>
+  <view style= {{height: "100%" , width: "100%",
+  justifyContent: "center", alignItems: "center"
+   }}>
+
+     {
+       this.state.showME ?
+       <ActivityIndicator size= "large" color= "#7BBBFA"/>
+     :
+     <view>
+     <Text></Text>
+   </view>
+         }
+
+</view> 
+
+<View style={styles.container}>
                 <text>E-mail:{auth.currentUser.email}</text>
                 <text> User:{auth.currentUser.displayName}</text>
                 
@@ -69,12 +102,15 @@ class Profile extends Component{
                 <text>Creation date:{auth.currentUser.metadata.creationTime}</text>
                 <text>Last login:{auth.currentUser.metadata.lastSignInTime}</text>
                 
-                
+              
       </View>
+      </view>
       
     )
   }
-}
+ }
+  
+
 
 const styles = StyleSheet.create({
   container:{

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, FlatList, TextInput} from 'react-native';
+import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator,Button, FlatList, TextInput} from 'react-native';
 import { db, auth } from '../firebase/config'
 import Post from '../components/Post';
 import SearchForm from '../components/SearchForm'
@@ -8,6 +8,7 @@ class Home extends Component{
     super(props);
     this.state ={
       posteos: [],
+      showME:true,
     }
   }
   componentDidMount(){
@@ -59,8 +60,42 @@ class Home extends Component{
       )
   }
 
+
+
+componentWillMount()
+{
+  setTimeout(()=>{
+this.setState({
+  showME:false
+})
+  },
+  3000)
+}
+
+
   render(){
     return(
+      
+
+<view>
+  <view style= {{height: "100%" , width: "100%",
+  justifyContent: "center", alignItems: "center"
+   }}>
+
+     {
+       this.state.showME ?
+       <ActivityIndicator size= "large" color= "#7BBBFA"/>
+     :
+     <view>
+     <Text></Text>
+   </view>
+         }
+
+
+
+
+ 
+  </view>
       <View style={styles.container}>
        <SearchForm searchPost={(user)=>this.searchPost(user)}/>
         <FlatList 
@@ -69,7 +104,8 @@ class Home extends Component{
           renderItem = { ({item}) => <Post postData={item}/>}
         />
       </View>
-      )
+      </view>
+     )
   }
 }
 
