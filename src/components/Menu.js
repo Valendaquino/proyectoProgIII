@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, findFocusedRoute} from "@react-navigation/native";
+import { Image} from 'react-native'
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { auth } from "../firebase/config";
 
@@ -88,8 +89,8 @@ class Menu extends Component {
         <Drawer.Navigator>
             {this.state.loggedIn === true ? 
                 <>
-                    <Drawer.Screen name="Home"  component={() => <Home /> } /> 
-                    <Drawer.Screen name="Profile" component={() => <Profile  logout={()=>this.logout()}/> }  />
+                    <Drawer.Screen name="Home"  component={() => <Home /> } options={{icon: <Image source={{uri:"https://img.icons8.com/material-sharp/24/000000/home.png"}} style={{height:100, width: 100}}/>}} /> 
+                    <Drawer.Screen name="Profile" component={(screenProps) => <Profile screenProps={screenProps}  logout={()=>this.logout()}/> }  />
                     <Drawer.Screen name="New Post" component={(screenProps)=><PostForm screenProps={screenProps}/>}/>
                     </>:<>
                     <Drawer.Screen name="Login" component={(screenProps) => <Login screenProps={screenProps} login={(email, pass) => this.login(email,pass)} error={this.state.error}/>} />

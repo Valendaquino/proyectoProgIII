@@ -10,7 +10,8 @@ class Post extends Component {
         this.state = {
             likes: 0,
             liked: false,
-            showModal: false,
+            showLikeModal: false,
+            showCommentModal: false,
             comment: ''
         }
     }
@@ -70,16 +71,25 @@ class Post extends Component {
                 console.error("Error updating document: ", error);
             });
     }
-
-    showModal() {
+    showLikeModal() {
         this.setState({
-            showModal: true,
+            showLikeModal: true,
+        })
+    }
+    hideLikeModal() {
+        this.setState({
+            showLikeModal: false,
+        })
+    }
+    showCommentModal() {
+        this.setState({
+            showCommentModal: true,
         })
     }
 
-    hideModal() {
+    hideCommentModal() {
         this.setState({
-            showModal: false,
+            showCommentModal: false,
         })
     }
     guardarComentario(algo) {
@@ -101,46 +111,93 @@ class Post extends Component {
             )
 
     }
+    deletePost() {
 
-
-
+        db.collection("posts")
+     
+          .doc(this.props.postData.id).delete()
+          .then((post) => {
+            console.log(post.id);
+          }).catch((error) => {
+            console.error("Error removing document: ", error);
+          });
+      }
 
 
     render() {
         return (
             <View style={styles.container}>
+                {this.props.postData.data.user == auth.currentUser.email ? (
+                    <TouchableOpacity onPress={(id)=>this.deletePost(this.props.postData.id)}>X</TouchableOpacity>
+                ):
+                    null
+                }
                 <Image
                     style={styles.photo}
                     source={{ uri: this.props.postData.data.photo }}
                 />
-                <Text style={styles.containerinfo}> {this.props.postData.data.user} </Text>
-                {//preguntar si se puede poner un displayname
-                }
-                <Text style={styles.containerinfo}> {this.props.postData.data.description} </Text>
-                <View style={{flex: 1, flexDirection:"row", width: "100%"}}>
+
+                <TouchableOpacity style={styles.button} onPress={() => this.showLikeModal()}>
+                    <Text style={styles.textButton}> Liked</Text>
+                </TouchableOpacity>
+                <View style={[this.state.showCommenntModal ? styles.modalOn : styles.modalOff]}>
                     {
                         !this.state.liked ?
                             <TouchableOpacity style={styles.button} onPress={() => this.likePost()}>
-                                <Text style={styles.textButton}><img src="https://img.icons8.com/small/16/000000/like.png" /> {this.state.likes}</Text>
+                                <Text style={styles.textButton}><Image style={styles.icon} source={{ uri: "https://img.icons8.com/small/16/000000/like.png" }} /> {this.state.likes}</Text>
                             </TouchableOpacity>
                             :
                             <TouchableOpacity style={styles.button} onPress={() => this.unlikePost()}>
-                                <Text style={styles.textButton}><img src="https://img.icons8.com/ios-filled/16/000000/like--v1.png" /> {this.state.likes}</Text>
+                                <Text style={styles.textButton}><Image style={styles.icon} source={{ uri: "https://img.icons8.com/ios-filled/16/000000/like--v1.png" }} /> {this.state.likes}</Text>
                             </TouchableOpacity>
                     }
                     {/* MODAL  */}
-                    <TouchableOpacity style={styles.button} onPress={() => this.showModal()}>
-                        <Text style={styles.textButton}> <img src="https://img.icons8.com/small/16/000000/topic--v1.png" /> {this.props.postData.data.comments.length}</Text>
+                    <TouchableOpacity style={styles.button} onPress={() => this.showCommentModal()}>
+                        <Text style={styles.textButton}> <Image style={styles.icon} source={{ uri: "https://img.icons8.com/small/16/000000/topic--v1.png" }} /> {this.props.postData.data.comments.length}</Text>
                     </TouchableOpacity>
                 </View>
-                {/* Modal comentarios */}
-                {this.state.showModal ?
+
+
+
+                <Text style={styles.email}> {this.props.postData.data.user} </Text>
+
+                <Text style={styles.containerinfo}> {this.props.postData.data.description} </Text>
+                 {/* Modal likes */}
+                 {this.state.showLikeModal ?
                     <Modal style={styles.modalContainer}
-                        visible={this.state.showModal}
-                        animationType='slide'
+                        visible={this.state.showLikeModal}
+                        animationType='fade'
                         transparent={false}
                     >
-                        <TouchableOpacity onPress={() => this.hideModal()}>
+                        <TouchableOpacity onPress={() => this.hideLikeModal()}>
+                            <Text style={styles.closeModal}>X</Text>
+                        </TouchableOpacity>
+
+                        <FlatList
+                            data={this.props.postData.data.likes}
+                            keyExtractor={like => like.user}
+                            renderItem={({ item }) => (
+                             
+                                <View >
+                                    <Text style={styles.email}>{item} </Text>
+                                   
+                                </View>
+                            )}
+
+                        />
+                        
+
+                    </Modal> :
+                    <Text></Text>
+                }
+                {/* Modal comentarios */}
+                {this.state.showCommentModal ?
+                    <Modal style={styles.modalContainer}
+                        visible={this.state.showCommentModal}
+                        animationType='fade'
+                        transparent={false}
+                    >
+                        <TouchableOpacity onPress={() => this.hideCommentModal()}>
                             <Text style={styles.closeModal}>X</Text>
                         </TouchableOpacity>
 
@@ -148,7 +205,10 @@ class Post extends Component {
                             data={this.props.postData.data.comments}
                             keyExtractor={comment => comment.createdAt.toString()}
                             renderItem={({ item }) => (
-                                <Text>{item.user}: {item.comment}</Text>
+                                <View style={styles.comms}>
+                                    <Text style={styles.email}>{item.user}: </Text>
+                                    <Text>{item.comment}</Text>
+                                </View>
                             )}
 
                         />
@@ -157,8 +217,6 @@ class Post extends Component {
                     </Modal> :
                     <Text></Text>
                 }
-
-
             </View>
         )
     }
@@ -167,9 +225,10 @@ class Post extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor:'white',
+        backgroundColor: 'white',
         marginVertical: 15,
         shadowColor: "#ccc",
+        height: "fit-content",
         shadowOffset: {
             width: 0,
             height: 0,
@@ -177,20 +236,25 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.5,
         shadowRadius: 10,
         borderRadius: 5,
-        marginTop:10
+        marginTop: 10
         // color:'white'
     },
-    containerinfo: {
-        color: 'black'
+    email: {
+        color: 'black',
+        fontWeight: '800'
     },
-    photo:{ 
-    flex: 1,
-    width: "90%",
-    height: 200,
-    borderRadius: 4, 
-    marginBottom: 10,
-    marginTop:10,
-   marginLeft:20,
+    containerinfo: {
+        color: 'black',
+        padding: "10px"
+    },
+    photo: {
+        flex: 1,
+        width: "90%",
+        height: 200,
+        borderRadius: 4,
+        marginBottom: 10,
+        marginTop: 10,
+        marginLeft: 20,
     },
     button: {
         backgroundColor: "#71CCF7",
@@ -199,16 +263,21 @@ const styles = StyleSheet.create({
         textAlign: "center",
         borderRadius: 4,
         borderWidth: 1,
+        width: "fit-content",
+        height: "fit-content",
         borderStyle: "solid",
         borderColor: "#71CCF7",
+
     },
     textButton: {
         color: "black",
     },
-    
+
     modalContainer: {
         width: '100%',
+        height: '100%',
         flex: 3,
+        
         alignSelf: 'center',
         backgroundColor: "white",
         borderColor: '#000000',
@@ -224,7 +293,6 @@ const styles = StyleSheet.create({
         borderRadius: 4,
     },
     modalText: {
-        fontWeight: 'bold',
         color: 'white',
     },
     comments: {
@@ -232,6 +300,31 @@ const styles = StyleSheet.create({
         borderColor: "black",
         borderStyle: "solid",
         borderWidth: "1"
+    },
+    comms: {
+        display: "flex",
+        flexDirection: "row",
+
+    },
+    icon: {
+        flex: 2,
+        width: "15px",
+        height: "15px",
+
+    },
+    modalOn: {
+        flex: 1,
+        flexDirection: "row",
+        width: "100%",
+        justifyContent: "center",
+        marginBottom: "-30px"
+    },
+    modalOff: {
+        flex: 1,
+        flexDirection: "row",
+        width: "100%",
+        justifyContent: "center",
+        marginBottom: "inherit"
     }
 
 });

@@ -1,137 +1,131 @@
-import React, {Component} from 'react';
-import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, FlatList, TextInput} from 'react-native';
+import React, { Component } from 'react';
+import { Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, FlatList, TextInput } from 'react-native';
 import { db, auth } from '../firebase/config'
 import Post from '../components/Post';
 
-class Profile extends Component{
-  constructor(props){
+class Profile extends Component {
+  constructor(props) {
     super(props);
-    this.state ={
+    this.state = {
       posteos: [],
-      showME:true,
+      showME: true,
     }
   }
-  componentDidMount(){
+  componentDidMount() {
     this.showPost();
     console.log(auth.currentUser.displayName);
-  
-   }
-  showPost(){
+
+  }
+  showPost() {
     db.collection('posts')
-        .where('user', '==',auth.currentUser.email)
-        //.orderBy('createdAt', 'desc') // 1 propiedad sobre la que queres aplicar un orden
-        .onSnapshot(
-          (docs) => {
-              console.log(docs);
-              let posts = [];
-              docs.forEach( doc => {
-                    posts.push({
-                      id: doc.id,
-                      data: doc.data(),
-                    })
-              })
-            console.log(posts);
-  
-            this.setState({
-              posteos: posts,
+      .where('user', '==', auth.currentUser.email)
+      //.orderBy('createdAt', 'desc') // 1 propiedad sobre la que queres aplicar un orden
+      .onSnapshot(
+        (docs) => {
+          console.log(docs);
+          let posts = [];
+          docs.forEach(doc => {
+            posts.push({
+              id: doc.id,
+              data: doc.data(),
             })
+          })
+          console.log(posts);
+
+          this.setState({
+            posteos: posts,
+          })
         }
       )
   }
-  deletePost(id){
-    
-      db.collection("posts")
-        .doc(id).delete()
-          .then((post) => {
-            console.log(post.id);
-        }).catch((error) => {
-            console.error("Error removing document: ", error);
-        });
+  redirectNewPost() {
+    this.props.screenProps.navigation.navigate('New Post')
   }
-  
-  componentWillMount()
-{
-  setTimeout(()=>{
-this.setState({
-  showME:false
-})
-  },
-  3000)
-}
-  
-  
-  
-  
-  
-  render(){
-   
-    return(
 
+  componentWillMount() {
+    setTimeout(() => {
+      this.setState({
+        showME: false
+      })
+    },
+      3000)
+  }
+  render() {
 
+    return (
+      <View style={styles.container}>
+        {
+          this.state.showME ?
+            <ActivityIndicator
+              style={{ height: "100%", width: "100%", justifyContent: "center", alignItems: "center" }}
+              size="large"
+              color="#7BBBFA" />
+            :
+            <View style={styles.container}>
 
-<View style={styles.container}>
-{
-       this.state.showME ?
-        <ActivityIndicator 
-          style= {{height: "100%" , width: "100%",justifyContent: "center", alignItems: "center"}}
-          size= "large" 
-          color= "#7BBBFA"/>
-         :
-         <View style={styles.container}>
-                <text>E-mail:{auth.currentUser.email}</text>
-                <text> User:{auth.currentUser.displayName}</text>
-                
-                <FlatList 
-                  data= { this.state.posteos }
-                  keyExtractor = { post => post.id}
-                  renderItem = { ({item}) => 
-                    <>
-                      <TouchableOpacity onPress={()=>this.deletePost(item.id)}>x</TouchableOpacity>
-                      <Post postData={item}/>
-                      
-                    </>
-                  }
-                />
-                <TouchableOpacity style={styles.button} onPress={()=>this.props.logout()} >LogOut</TouchableOpacity>
-                <text>Creation date:{auth.currentUser.metadata.creationTime}</text>
-                <text>Last login:{auth.currentUser.metadata.lastSignInTime}</text>
-                
-              
+              <Text style={styles.username}> {auth.currentUser.displayName}</Text>
+
+              {this.state.posteos.length == 0 ? (
+                <View style={styles.noPosts}>
+                  <Text> No posts yet </Text>
+                  <TouchableOpacity style={styles.addNew} onPress={() => this.redirectNewPost()}> Add new post</TouchableOpacity>
+                </View>
+              ) : (
+                  <FlatList
+                    data={this.state.posteos}
+                    keyExtractor={post => post.id}
+                    renderItem={({ item }) =>
+                      <>
+
+                        <Post postData={item} />
+
+                      </>
+                    }
+                  />
+                )}
+
+              <TouchableOpacity style={styles.button} onPress={() => this.props.logout()} >LogOut</TouchableOpacity>
+              <View style={styles.personalInfo}>
+                <Text>Email: {auth.currentUser.email}</Text>
+                <Text>Creation date:{auth.currentUser.metadata.creationTime}</Text>
+                <Text>Last login:{auth.currentUser.metadata.lastSignInTime}</Text>
+              </View>
+
+            </View>
+        }
       </View>
-       }
-      </View>
-      
+
     )
   }
- }
-  
+}
+
 
 
 const styles = StyleSheet.create({
-  container:{
-    paddingHorizontal:10,
-    backgroundColor:'white'
+  container: {
+    paddingHorizontal: 10,
+    backgroundColor: 'white'
   },
-  formContainer:{
+  formContainer: {
     backgroundColor: '#FFFFFF',
     marginHorizontal: 10,
-    padding:10,
+    padding: 10,
   },
-  field:{
+  field: {
     borderColor: '#444',
-    borderWidth:1,
+    borderWidth: 1,
     borderStyle: 'solid',
     height: 50,
     paddingHorizontal: 20,
-    paddingVertical:10
+    paddingVertical: 10
   },
-  image:{
+  image: {
     height: 250,
   },
-  touchable:{
+  touchable: {
     backgroundColor: '#444',
-    borderRadius:4,
-    marginVertical:10,
+    borderRadius: 4,
+    marginVertical: 10,
   },
   button: {
     backgroundColor: "#71CCF7",
@@ -142,10 +136,33 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderStyle: "solid",
     borderColor: "#71CCF7",
-},
-textButton: {
+  },
+  textButton: {
     color: "black",
-}
+  },
+  username: {
+    fontSize: "20px"
+  },
+  personalInfo: {
+    marginTop: "20px"
+  },
+  noPosts: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: "20px",
+    marginBottom: "20px",
+  },
+  addNew: {
+    fontSize: "20px",
+    borderRadius: 4,
+    borderWidth: 1,
+    width: "fit-content",
+    height: "fit-content",
+    borderStyle: "solid",
+    borderColor: "#71CCF7",
+    
+  }
 })
 
 export default Profile;
