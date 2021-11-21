@@ -225,26 +225,31 @@ class Post extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'white',
+        backgroundColor: 'black',
         marginVertical: 15,
-        shadowColor: "#ccc",
+        shadowColor: "white",
+        
         height: "fit-content",
         shadowOffset: {
             width: 0,
             height: 0,
         },
-        shadowOpacity: 0.5,
+        shadowOpacity: 1 ,
         shadowRadius: 10,
-        borderRadius: 5,
-        marginTop: 10
+        borderRadius: 10,
+        marginTop: 10,
+        marginLeft: 10,
+        marginRight: 10,
+        
+        
         // color:'white'
     },
     email: {
-        color: 'black',
+        color: 'white',
         fontWeight: '800'
     },
     containerinfo: {
-        color: 'black',
+        color: 'white',
         padding: "10px"
     },
     photo: {
@@ -270,7 +275,7 @@ const styles = StyleSheet.create({
 
     },
     textButton: {
-        color: "black",
+        color: "white",
     },
 
     modalContainer: {

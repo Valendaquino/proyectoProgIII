@@ -32,44 +32,43 @@ class SearchForm extends Component{
 
 const styles = StyleSheet.create({
     formContainer:{
-        height:'30%',
-        paddingHorizontal:10,
+        height:'100px',
         marginTop: 30,
         marginBottom:30,
-        backgroundColor:"blue",
         flex: 1,
         flexDirection:"row",
-        width: "100%",
-        backgroundColor:"grey"
+        width: "200px%",
+     
     },
     multilineInput:{
-        height:95,
-        paddingVertical:15,
-        paddingHorizontal: 10,
-        borderWidth:1,
-        borderColor: '#fff',
-        borderStyle: 'solid',
-        borderRadius: 10,
-        marginVertical:10,
+    width:"200px" ,
+    height: "26px",
+    borderRadius: "15px",
+    borderColor: '#fff',
+    border: "1px solid grey",
+    backgroundColor: "#C6E0F9"
+        
     },
     buttonSearch:{
-        backgroundColor: '#71CCF7',
-        paddingHorizontal: 9,
-        paddingVertical: 6,
-        textAlign: 'center',
-        borderRadius:4, 
-        borderWidth:1,
+        backgroundColor: '#C6E0F9',
+        width: "84px" ,
+        height: "26px",
+        borderRadius: "10px",
+        marginLeft:"5%",
+        marginRight:"5%",
         borderStyle: 'solid',
         borderColor: '#71CCF7',
-       paddingLeft:50
-        
+      
         
     },
     textButton:{
         color: 'black'
     },
     TextInput:{
-        backgroundColor: "white"
+        backgroundColor: "white",
+        width: "200px",
+        height: "26px",
+        borderRadius: "10px"
     }
 })
 

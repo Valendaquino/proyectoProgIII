@@ -102,7 +102,7 @@ this.setState({
 const styles = StyleSheet.create({
   container:{
     paddingHorizontal:10,
-    backgroundColor:'white'
+    backgroundColor:'black'
   },
   formContainer:{
     backgroundColor: '#ccc',

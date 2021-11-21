@@ -123,6 +123,13 @@ const styles = StyleSheet.create({
   },
   buttonEnabled: {
     backgroundColor: 'green',
+    width:400 ,
+    height:50,
+    borderRadius: "15px",
+    marginTop:"5%",
+    marginLeft:"5%",
+    marginRight:"5%"
+   
 },
 buttonDisabled: {
     backgroundColor: '#D3D3D3',
@@ -145,7 +152,7 @@ height:20,
     borderRadius: 4,
     borderWidth: 1,
     borderStyle: "solid",
-    borderColor: "#71CCF7",
+    borderColor: "green",
     marginTop: 10
   },
   textButton: {
