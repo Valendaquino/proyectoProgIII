@@ -67,23 +67,17 @@ this.setState({
    
     return(
 
-<View>
-  <View style= {{height: "100%" , width: "100%",
-  justifyContent: "center", alignItems: "center"
-   }}>
 
-     {
-       this.state.showME ?
-       <ActivityIndicator size= "large" color= "#7BBBFA"/>
-     :
-     <View>
-     <Text></Text>
-   </View>
-         }
-
-</View> 
 
 <View style={styles.container}>
+{
+       this.state.showME ?
+        <ActivityIndicator 
+          style= {{height: "100%" , width: "100%",justifyContent: "center", alignItems: "center"}}
+          size= "large" 
+          color= "#7BBBFA"/>
+         :
+         <View style={styles.container}>
                 <text>E-mail:{auth.currentUser.email}</text>
                 <text> User:{auth.currentUser.displayName}</text>
                 
@@ -104,6 +98,7 @@ this.setState({
                 
               
       </View>
+       }
       </View>
       
     )

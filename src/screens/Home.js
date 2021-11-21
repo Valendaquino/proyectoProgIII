@@ -76,35 +76,25 @@ this.setState({
   render(){
     return(
       
-
-<View>
-  <View style= {{height: "100%" , width: "100%",
-  justifyContent: "center", alignItems: "center"
-   }}>
-
-     {
-       this.state.showME ?
-       <ActivityIndicator size= "large" color= "#7BBBFA"/>
-     :
-     <View>
-     <Text></Text>
-   </View>
-         }
-
-
-
-
- 
-  </View>
       <View style={styles.container}>
-       <SearchForm searchPost={(user)=>this.searchPost(user)}/>
-        <FlatList 
-          data= { this.state.posteos }
-          keyExtractor = { post => post.id}
-          renderItem = { ({item}) => <Post postData={item}/>}
-        />
+      {
+       this.state.showME ?
+        <ActivityIndicator 
+          style= {{height: "100%" , width: "100%",justifyContent: "center", alignItems: "center"}}
+          size= "large" 
+          color= "#7BBBFA"/>
+         :
+        <View style={styles.container}>
+          <SearchForm searchPost={(user)=>this.searchPost(user)}/>
+          <FlatList 
+            data= { this.state.posteos }
+            keyExtractor = { post => post.id}
+            renderItem = { ({item}) => <Post postData={item}/>}
+          /> 
+        </View>
+      }
       </View>
-      </View>
+      
      )
   }
 }

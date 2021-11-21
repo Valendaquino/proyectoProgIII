@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, TextInput, StyleSheet, TouchableOpacity, ActivityIndicator,} from 'react-native';
 import { auth, db } from '../firebase/config'
 import MyCamera from '../components/MyCamera';
 class PostForm extends Component{
@@ -8,7 +8,8 @@ class PostForm extends Component{
         this.state={
             textoPost:'',
             url:'',
-            showCamera: true
+            showCamera: true,
+            showME:true,
         };
     }
   
@@ -41,13 +42,30 @@ class PostForm extends Component{
        })
    }
 
+   componentWillMount()
+   {
+     setTimeout(()=>{
+   this.setState({
+     showME:false
+   })
+     },
+     3000)
+   }
+   
  
     render(){
         return this.state.showCamera ? (
             <MyCamera onImageUpload={(url) => this.onImageUpload(url)} />
           ) : (
             <View style={styles.formContainer}>
-             
+             {
+       this.state.showME ?
+        <ActivityIndicator 
+          style= {{height: "100%" , width: "100%",justifyContent: "center", alignItems: "center"}}
+          size= "large" 
+          color= "#7BBBFA"/>
+         :
+         <View style={styles.formContainer}>
               <TextInput
                 style={styles.input}
                 placeholder="Descripción"
@@ -64,6 +82,8 @@ class PostForm extends Component{
                 <Text style={styles.textButton}>Postear</Text>
               </TouchableOpacity>
             </View>
+              }
+              </View>
           );
         }
 }

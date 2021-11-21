@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  ActivityIndicator,
 } from "react-native";
 
 class Login extends Component{
@@ -13,7 +14,8 @@ class Login extends Component{
         this.state={
             email: "",
             password: "",
-            err: false
+            err: false ,
+            showME:true,
         }  
     }
     navigationToRegister(){
@@ -24,10 +26,30 @@ class Login extends Component{
         err: true
       })
     }
+
+    componentWillMount()
+{
+  setTimeout(()=>{
+this.setState({
+  showME:false
+})
+  },
+  3000)
+}
+
+
       
     render(){
         return (
             <View style={styles.containerLogin} >
+              {
+       this.state.showME ?
+        <ActivityIndicator 
+          style= {{height: "100%" , width: "100%",justifyContent: "center", alignItems: "center"}}
+          size= "large" 
+          color= "#7BBBFA"/>
+         :
+         <View style={styles.containerLogin} >
              { //preguntar si se puede
               this.state.err ? ( 
                 <Text style={styles.hide}>{this.props.error}</Text>
@@ -61,6 +83,8 @@ class Login extends Component{
               </TouchableOpacity>
 
             </View>
+             }
+             </View>
               );
             }
           }

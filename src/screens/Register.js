@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  ActivityIndicator,
 } from "react-native";
 
 class Register extends Component {
@@ -14,7 +15,8 @@ class Register extends Component {
       email: "",
       password: "",
       userName: "",
-      err: false
+      err: false,
+      showME: true,
      
     };
   }
@@ -27,10 +29,31 @@ class Register extends Component {
    })
  }
    
+ componentWillMount()
+ {
+   setTimeout(()=>{
+ this.setState({
+   showME:false
+ })
+   },
+   3000)
+ }
+
+
+
+
   render() {
     
     return (
       <View style={styles.containerRegister}>
+               {
+       this.state.showME ?
+        <ActivityIndicator 
+          style= {{height: "100%" , width: "100%",justifyContent: "center", alignItems: "center"}}
+          size= "large" 
+          color= "#7BBBFA"/>
+         :
+         <View style={styles.containerRegister}>
         { //preguntar si se puede
           this.state.err ? ( 
             <Text style={styles.hide}>{this.props.error}</Text>
@@ -71,8 +94,8 @@ class Register extends Component {
             <Text style={styles.textButton}>Registrar</Text>
           </TouchableOpacity>
           
-        
-       
+        </View>
+        }
       </View>
     );
   }
