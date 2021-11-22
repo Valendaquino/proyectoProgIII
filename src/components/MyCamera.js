@@ -91,10 +91,11 @@ class MyCamera extends Component {
               style={{ flex: 1, width: "100%" }}
               type={Camera.Constants.Type.front}
               ref={(cam) => (this.camera = cam)}
-            />
-            <TouchableOpacity onPress={() => this.takePicture()}>
-              <Text style={styles.button}>Shoot</Text>
+            >
+            <TouchableOpacity style={styles.shoot} onPress={() => this.takePicture()}>
+              <Image style={styles.icon} source={{uri: "https://img.icons8.com/ios-glyphs/30/000000/camera.png"}}/>
             </TouchableOpacity>
+            </Camera>
           </>
         )}
       </>
@@ -102,6 +103,7 @@ class MyCamera extends Component {
   }
 }
 const styles = StyleSheet.create({
+
 button:{
   backgroundColor:'#71CCF7',
   paddingHorizontal: 10,
@@ -113,8 +115,27 @@ button:{
   borderColor: '#71CCF7'
 },
 textButton:{
-  color: '#fff'
-}
+  color: '#fff',
+  alignSelf:"center"
+},
+icon: {
+  flex: 1,
+  width: "20px",
+  height: "20px",
+  alignSelf: "center",
+  backgroundColor:'#71CCF7',
+  paddingHorizontal: 10,
+  paddingVertical: 6,
+  textAlign: 'center',
+  borderRadius:4, 
+  borderWidth:1,
+  borderStyle: 'solid',
+  borderColor: '#71CCF7',
+  
+  position: "absolute",
+  
+
+},
 })
 
 export default MyCamera;

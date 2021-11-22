@@ -10,6 +10,7 @@ import Profile from '../screens/Profile';
 import Login from "../screens/Login";
 import Register from "../screens/Register";
 import PostForm from "../screens/PostForm";
+import Search from "../screens/Search"
 
 
 const Drawer = createDrawerNavigator();
@@ -90,6 +91,7 @@ class Menu extends Component {
             {this.state.loggedIn === true ? 
                 <>
                     <Drawer.Screen name="Home"  component={() => <Home /> } options={{icon: <Image source={{uri:"https://img.icons8.com/material-sharp/24/000000/home.png"}} style={{height:100, width: 100}}/>}} /> 
+                    <Drawer.Screen name="Search" component={() => <Search /> }/>
                     <Drawer.Screen name="Profile" component={(screenProps) => <Profile screenProps={screenProps}  logout={()=>this.logout()}/> }  />
                     <Drawer.Screen name="New Post" component={(screenProps)=><PostForm screenProps={screenProps}/>}/>
                     </>:<>

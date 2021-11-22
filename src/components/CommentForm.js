@@ -18,12 +18,12 @@ class CommentForm extends Component{
                 <TextInput
                     style={styles.multilineInput}
                     onChangeText={(text)=>this.setState({comment: text})}
-                    placeholder='Dejá tu comentario'
+                    placeholder='Add a comment..'
                     keyboardType='default'
                     multiline
                     />
                 <TouchableOpacity style={styles.button} onPress={()=>this.props.guardarComentario(this.state.comment)}>
-                    <Text style={styles.textButton}>Enviar comentario</Text>    
+                    <Text style={styles.textButton}>Post</Text>    
                 </TouchableOpacity>
             </View>
         )

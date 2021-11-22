@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, Modal, Image, TouchableOpacity, FlatList } from 'react-native'
+import { Text, StyleSheet, View, Modal, Image, TouchableOpacity, FlatList, Alert } from 'react-native'
 import { auth, db } from '../firebase/config'
 import firebase from 'firebase'
 import CommentForm from './CommentForm'
@@ -112,15 +112,31 @@ class Post extends Component {
 
     }
     deletePost() {
-
-        db.collection("posts")
+        Alert.alert(
+            "Delete post",
+            "Are you sure you wanna delete?",
+            [
+              {
+                text: "Cancel",
+                onPress: () => this.setState({delete: false}),
+                style: "cancel"
+              },
+              { text: "OK", onPress:this.setState({delete: true})}
+            ]
+          )
+          if(this.state.delete == true){
+            db.collection("posts")
      
-          .doc(this.props.postData.id).delete()
-          .then((post) => {
-            console.log(post.id);
-          }).catch((error) => {
-            console.error("Error removing document: ", error);
-          });
+            .doc(this.props.postData.id).delete()
+            .then((post) => {
+              console.log(this.props.postData.id);
+            }).catch((error) => {
+              console.error("Error removing document: ", error);
+            });
+          } else{
+              
+          }
+       
       }
 
 
@@ -200,18 +216,24 @@ class Post extends Component {
                         <TouchableOpacity onPress={() => this.hideCommentModal()}>
                             <Text style={styles.closeModal}>X</Text>
                         </TouchableOpacity>
-
-                        <FlatList
-                            data={this.props.postData.data.comments}
-                            keyExtractor={comment => comment.createdAt.toString()}
-                            renderItem={({ item }) => (
-                                <View style={styles.comms}>
-                                    <Text style={styles.email}>{item.user}: </Text>
-                                    <Text>{item.comment}</Text>
-                                </View>
-                            )}
-
-                        />
+                        {
+                            this.props.postData.data.comments.length ===0 ?(
+                                <Text>There are no comments. Be the first one  </Text>
+                            ):(
+                                <FlatList
+                                data={this.props.postData.data.comments}
+                                keyExtractor={comment => comment.createdAt.toString()}
+                                renderItem={({ item }) => (
+                                    <View style={styles.comms}>
+                                        <Text style={styles.email}>{item.user}: </Text>
+                                        <Text>{item.comment}</Text>
+                                    </View>
+                                )}
+    
+                            />
+                            )
+                        }
+                       
                         <CommentForm guardarComentario={(algo) => this.guardarComentario(algo)} />
 
                     </Modal> :

@@ -68,7 +68,7 @@ class PostForm extends Component{
          <View style={styles.formContainer}>
               <TextInput
                 style={styles.input}
-                placeholder="Descripción"
+                placeholder="Write a description...."
                 keyboardType="default"
                 onChangeText={(text) => this.setState({ textoPost: text })}
                 value={this.state.textoPost}
@@ -79,7 +79,7 @@ class PostForm extends Component{
                 style={styles.button}
                 onPress={() => this.submitPost()}
               >
-                <Text style={styles.textButton}>Postear</Text>
+                <Text style={styles.textButton}>Post</Text>
               </TouchableOpacity>
             </View>
               }
