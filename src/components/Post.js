@@ -114,7 +114,7 @@ class Post extends Component {
     deletePost() {
         Alert.alert(
             "Delete post",
-            "Are you sure you wanna delete?",
+            "Are you sure you want to delete?",
             [
               {
                 text: "Cancel",
@@ -188,19 +188,25 @@ class Post extends Component {
                         <TouchableOpacity onPress={() => this.hideLikeModal()}>
                             <Text style={styles.closeModal}>X</Text>
                         </TouchableOpacity>
-
-                        <FlatList
-                            data={this.props.postData.data.likes}
-                            keyExtractor={like => like.user}
-                            renderItem={({ item }) => (
-                             
-                                <View >
-                                    <Text style={styles.email}>{item} </Text>
-                                   
-                                </View>
-                            )}
-
-                        />
+                        {
+                            this.state.likes == 0 ?(
+                                <Text style= {styles.modalText}>Be the first one to like</Text>
+                            ):(
+                                <FlatList
+                                data={this.props.postData.data.likes}
+                                keyExtractor={like => like.user}
+                                renderItem={({ item }) => (
+                                 
+                                    <View >
+                                        <Text style={styles.email}>{item} </Text>
+                                       
+                                    </View>
+                                )}
+    
+                            />
+                            )
+                        }
+                       
                         
 
                     </Modal> :
@@ -267,7 +273,7 @@ const styles = StyleSheet.create({
         // color:'white'
     },
     email: {
-        color: 'white',
+        color: 'black',
         fontWeight: '800'
     },
     containerinfo: {
@@ -320,7 +326,7 @@ const styles = StyleSheet.create({
         borderRadius: 4,
     },
     modalText: {
-        color: 'white',
+        color: 'black',
     },
     comments: {
         flexDirection: "column",

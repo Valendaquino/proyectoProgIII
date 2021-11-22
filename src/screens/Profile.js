@@ -51,7 +51,7 @@ class Profile extends Component {
       3000)
   }
   render() {
-
+console.log(auth.currentUser.displayName);
     return (
       <View style={styles.container}>
         {
@@ -62,9 +62,10 @@ class Profile extends Component {
               color="#7BBBFA" />
             :
             <View style={styles.container}>
-
-              <Text style={styles.username}> {auth.currentUser.displayName}</Text>
-
+              <View style={styles.userInfo}>
+                  <Text style={styles.username}> {auth.currentUser.displayName}</Text>
+                  <Text style={{fontSize:"20px", marginLeft:"5px"}}> Posts: {this.state.posteos.length}</Text>
+              </View>
               {this.state.posteos.length == 0 ? (
                 <View style={styles.noPosts}>
                   <Text> No posts yet </Text>
@@ -161,8 +162,16 @@ const styles = StyleSheet.create({
     height: "fit-content",
     borderStyle: "solid",
     borderColor: "#71CCF7",
+  }, 
+  userInfo:{
+    display:"flex", 
+    flexDirection: "row",
+    flex: 2,
+    justifyContent: "center",
+    alignItems:"center",
     
-  }
+  },
+  
 })
 
 export default Profile;
