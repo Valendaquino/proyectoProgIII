@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, FlatList, Image } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, ActivityIndicator, FlatList, Image } from 'react-native';
 import { db, auth } from '../firebase/config'
 import Post from '../components/Post';
 class Search extends Component {
@@ -10,6 +10,7 @@ class Search extends Component {
       search: " ",
       searching: false,
       userSearch: '',
+      showME: true,
     }
   }
   searchPost(user) {
@@ -39,7 +40,15 @@ class Search extends Component {
         }
       )
   }
-
+  componentWillMount()
+  {
+    setTimeout(()=>{
+  this.setState({
+    showME:false
+  })
+    },
+    3000)
+  }
 
 
   render() {
@@ -58,6 +67,7 @@ class Search extends Component {
             <Text style={styles.textButton}>Search</Text>
           </TouchableOpacity>
         </View>
+       
         {
           this.state.searching ? (
             this.state.postsSearch.length === 0 ? (
@@ -67,20 +77,30 @@ class Search extends Component {
               )
 
           ) : (
+            
             <Image style={styles.icon} source={{uri:"https://img.icons8.com/ios/100/000000/search-client.png"}}/>
+           
             )
         }
-
-
-
-
-
-        <FlatList
+  
+           
+ <FlatList
           data={this.state.postsSearch}
           keyExtractor={post => post.id}
           renderItem={({ item }) => <Post postData={item} />}
         />
+{
+       this.state.showME ?
+        <ActivityIndicator 
+          style= {{height: "100%" , width: "100%",justifyContent: "center", alignItems: "center"}}
+          size= "large" 
+          color= "#7BBBFA"/>
+         :
+         <View style={styles.formContainer}>
+
       </View>
+       }
+       </View>
     )
   }
 }
@@ -102,7 +122,7 @@ const styles = StyleSheet.create({
   },
   
   buttonSearch: {
-    backgroundColor: '#C6E0F9',
+    backgroundColor: 'black',
     width: "84px",
     height: "26px",
     borderRadius: "8px",
@@ -117,7 +137,7 @@ const styles = StyleSheet.create({
 
   },
   textButton: {
-    color: 'black',
+    color: 'white',
     
   },
   textInput: {
@@ -128,9 +148,20 @@ const styles = StyleSheet.create({
   },
   icon: {
     flex: 2,
-    width: "200px",
-    height: "200px",
+    width: "100%",
+    height: "100%",
   
+  },
+
+  actIndicator: {
+    width: screen.width,
+    height: screen.height,
+    backgroundColor: 'white',
+    position: 'absolute',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 10
   }
 })
 

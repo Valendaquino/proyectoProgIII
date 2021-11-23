@@ -160,7 +160,19 @@ height:20,
   },
   hide:{
     display: 'none'
+  },
+  actIndicator: {
+    width: screen.width,
+    height: screen.height,
+    backgroundColor: 'white',
+    position: 'absolute',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 10
   }
+
+
 });
 
 export default Register;

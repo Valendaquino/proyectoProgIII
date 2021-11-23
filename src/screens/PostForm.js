@@ -116,6 +116,17 @@ const styles = StyleSheet.create({
     },
     textButton:{
         color: '#fff'
+    }, 
+   
+    actIndicator: {
+      width: screen.width,
+      height: screen.height,
+      backgroundColor: 'white',
+      position: 'absolute',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      zIndex: 10
     }
 
 })

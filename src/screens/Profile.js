@@ -110,11 +110,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     fontSize:"20px",
     backgroundColor: 'white'
+    
   },
   formContainer: {
     backgroundColor: '#FFFFFF',
     marginHorizontal: 10,
     padding: 10,
+   
   },
   field: {
     borderColor: '#444',
@@ -205,6 +207,17 @@ const styles = StyleSheet.create({
     height: "20px",
     justifyContent: "center",
     marginRight: 1
+  },
+
+ actIndicator: {
+    width: screen.width,
+    height: screen.height,
+    backgroundColor: 'white',
+    position: 'absolute',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 10
   }
   
 })
