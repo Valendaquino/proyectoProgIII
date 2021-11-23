@@ -101,13 +101,14 @@ this.setState({
               marginRight:"5%"
             }, 
             containerInput:{
-              backgroundColor:"#C6E0F9",
-              width:400 ,
+              backgroundColor:"white",
+              width:250 ,
               height:50,
-              borderRadius: "15px",
+              borderRadius: "10px",
               marginTop:"5%",
               marginLeft:"5%",
               marginRight:"5%",
+             
             
               
             },
