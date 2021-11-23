@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
         // color:'white'
     },
     email: {
-        color: 'black',
+        color: 'white',
         fontWeight: '800'
     },
     containerinfo: {
@@ -290,7 +290,7 @@ const styles = StyleSheet.create({
         marginLeft: 20,
     },
     button: {
-        backgroundColor: "#71CCF7",
+        backgroundColor: "white",
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: "center",
@@ -299,11 +299,11 @@ const styles = StyleSheet.create({
         width: "fit-content",
         height: "fit-content",
         borderStyle: "solid",
-        borderColor: "#71CCF7",
+        borderColor: "black",
 
     },
     textButton: {
-        color: "white",
+        color: "black",
     },
 
     modalContainer: {
@@ -337,6 +337,7 @@ const styles = StyleSheet.create({
     comms: {
         display: "flex",
         flexDirection: "row",
+        
 
     },
     icon: {

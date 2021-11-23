@@ -7,6 +7,7 @@ function App() {
    <NavigationContainer>
      <Menu/>
    </NavigationContainer>
+   
   );
 }
 export default App;
