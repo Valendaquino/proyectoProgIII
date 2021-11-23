@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   },
   buttonEnabled: {
     backgroundColor: 'green',
-    width:400 ,
+    width:200 ,
     height:50,
     borderRadius: "15px",
     marginTop:"5%",

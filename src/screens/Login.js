@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
     marginLeft: "5%",
     marginRight: "5%"
   },
+  
   containerInput: {
     backgroundColor: "white",
     width: 250,
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
   },
   buttonEnabled: {
     backgroundColor: 'green',
-    width: 400,
+    width: 200,
     height: 50,
     borderRadius: "15px",
     marginTop: "5%",
@@ -142,7 +143,7 @@ const styles = StyleSheet.create({
   },
   textButton: {
     color: "406343",
-    
+
   },
   hide: {
     display: 'none'

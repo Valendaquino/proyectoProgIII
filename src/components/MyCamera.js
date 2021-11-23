@@ -73,15 +73,15 @@ class MyCamera extends Component {
         {this.state.photo ? (
           <>
             <Image
-              style={{ flex: 1, width: "100%" }}
+              style={{ flex: 1, width: "100%", borderWidth:1,borderStyle: 'solid', borderColor: 'white', }}
               source={{ uri: this.state.photo }}
             />
             <View>
               <TouchableOpacity onPress={() => this.savePhoto()}>
-                <Text style={styles.button}>Aceptar</Text>
+                <Text style={styles.buttonAc}>Aceptar</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={() => this.deletePhoto()}>
-                <Text style={styles.button}>Cancelar</Text>
+                <Text style={styles.buttonAc}>Cancelar</Text>
               </TouchableOpacity>
             </View>
           </>
@@ -104,15 +104,23 @@ class MyCamera extends Component {
 }
 const styles = StyleSheet.create({
 
-button:{
-  backgroundColor:'#71CCF7',
+buttonAc:{
+  backgroundColor:'white',
   paddingHorizontal: 10,
   paddingVertical: 6,
   textAlign: 'center',
   borderRadius:4, 
   borderWidth:1,
   borderStyle: 'solid',
-  borderColor: '#71CCF7'
+  borderColor: 'black',
+  height:45,
+  width:350,
+  fontSize:20,
+  marginTop:4,
+  marginLeft:15,
+  marginBottom:4
+
+  
 },
 textButton:{
   color: '#fff',
@@ -120,18 +128,18 @@ textButton:{
 },
 icon: {
   flex: 1,
-  width: "20px",
-  height: "20px",
+  width: "60px",
+  height: "60px",
   alignSelf: "center",
-  backgroundColor:'#71CCF7',
+  marginTop:'180%',
+  backgroundColor:'white',
   paddingHorizontal: 10,
   paddingVertical: 6,
   textAlign: 'center',
   borderRadius:4, 
   borderWidth:1,
   borderStyle: 'solid',
-  borderColor: '#71CCF7',
-  
+  borderColor: 'white',
   position: "absolute",
   
 
