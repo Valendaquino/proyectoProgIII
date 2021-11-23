@@ -34,9 +34,12 @@ const styles = StyleSheet.create({
     formContainer:{
         paddingHorizontal:10,
         marginTop: 20,
-        marginBottom:90
+        marginBottom:90,
+       
+        
     },
     multilineInput:{
+       
         height:100,
         paddingVertical:15,
         paddingHorizontal: 10,

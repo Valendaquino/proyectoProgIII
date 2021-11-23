@@ -107,9 +107,10 @@ console.log(auth.currentUser.displayName);
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     paddingHorizontal: 10,
     fontSize:"20px",
-    backgroundColor: 'white'
+    backgroundColor: '#FFFFFF',
     
   },
   formContainer: {

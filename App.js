@@ -4,10 +4,11 @@ import Menu from './src/components/Menu';
 
 function App() {
   return (
-   <NavigationContainer>
+  <NavigationContainer>
      <Menu/>
    </NavigationContainer>
-   
+ 
+  
   );
 }
 export default App;
