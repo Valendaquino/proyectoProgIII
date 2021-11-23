@@ -90,7 +90,7 @@ class Menu extends Component {
         <Drawer.Navigator>
             {this.state.loggedIn === true ? 
                 <>
-                    <Drawer.Screen name="Home"  component={() => <Home /> } options={{icon: <Image source={{uri:"https://img.icons8.com/material-sharp/24/000000/home.png"}} style={{height:100, width: 100}}/>}} /> 
+                    <Drawer.Screen name="Home"  component={() => <Home /> } options={{icon: <Image source={{uri:"https://img.icons8.com/material-sharp/24/000000/home.png"}} style={{flex: 2, height:"20px", width: "20px"}}/>}} /> 
                     <Drawer.Screen name="Search" component={() => <Search /> }/>
                     <Drawer.Screen name="Profile" component={(screenProps) => <Profile screenProps={screenProps}  logout={()=>this.logout()}/> }  />
                     <Drawer.Screen name="New Post" component={(screenProps)=><PostForm screenProps={screenProps}/>}/>

@@ -39,7 +39,7 @@ class Home extends Component {
         }
       )
   }
- 
+
 
 
   componentWillMount() {
@@ -59,20 +59,20 @@ class Home extends Component {
         {
           this.state.showME ? (
             <ActivityIndicator
-              style={{ height: "100%", width: "100%", justifyContent: "center", alignItems: "center" }}
+              style={styles.actIndicator}
               size="large"
               color="#7BBBFA" />
           ) : (
-                  <View style={styles.container}>
+              <View style={styles.container}>
 
-                    <FlatList
-                      data={this.state.posteos}
-                      keyExtractor={post => post.id}
-                      renderItem={({ item }) => <Post postData={item} />}
-                    />
-                  </View>
+                <FlatList
+                  data={this.state.posteos}
+                  keyExtractor={post => post.id}
+                  renderItem={({ item }) => <Post postData={item} />}
+                />
+              </View>
             )
-            
+
         }
       </View>
 
@@ -105,7 +105,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#ccc',
     borderRadius: 4,
     marginVertical: 10,
+  },
+  actIndicator: {
+    width: screen.width,
+    height: screen.height,
+    backgroundColor: 'white',
+    position: 'absolute',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 10
   }
+
 })
 
 export default Home;

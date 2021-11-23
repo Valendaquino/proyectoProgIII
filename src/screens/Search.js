@@ -43,12 +43,13 @@ class Search extends Component {
 
 
   render() {
+    console.log(this.state.searching);
     return (
       <View>
         <View style={styles.formContainer}>
 
           <TextInput
-            style={styles.TextInput}
+            style={styles.textInput}
             onChangeText={(text) => this.setState({ search: text})}
             placeholder='Search post'
             keyboardType='default'
@@ -66,7 +67,7 @@ class Search extends Component {
               )
 
           ) : (
-              <Image style={styles.icon} souce={{ uri: "https://img.icons8.com/ios-glyphs/30/000000/search-client.png" } /*no puedo hacer que se vea la img, como que aparece en el render pero no se ve el diujo*/} />
+            <Image style={styles.icon} source={{uri:"https://img.icons8.com/ios/100/000000/search-client.png"}}/>
             )
         }
 
@@ -85,56 +86,50 @@ class Search extends Component {
 }
 
 const styles = StyleSheet.create({
+  body:{
+    backgroundColor: "black"
+  },
   formContainer: {
     height: '100px',
     marginTop: 30,
     marginBottom: 30,
     flex: 1,
     flexDirection: "row",
-    width: "200px%",
+    width: "100%",
+    justifyContent: "center",
+    alignSelf: "center"
 
   },
-  multilineInput: {
-    width: "200px",
-    height: "26px",
-    borderRadius: "15px",
-    borderColor: '#fff',
-    border: "1px solid grey",
-    backgroundColor: "#C6E0F9"
-
-  },
+  
   buttonSearch: {
     backgroundColor: '#C6E0F9',
     width: "84px",
     height: "26px",
-    borderRadius: "10px",
-    marginLeft: "5%",
+    borderRadius: "8px",
+    marginLeft: "0",
     marginRight: "5%",
     borderStyle: 'solid',
     borderColor: '#71CCF7',
+    textAlign:"center",
+    justifyContent: "center",
+    paddingBottom:1
 
 
   },
   textButton: {
-    color: 'black'
+    color: 'black',
+    
   },
-  TextInput: {
+  textInput: {
     backgroundColor: "white",
     width: "200px",
     height: "26px",
-    borderRadius: "10px"
+    borderRadius: "8px"
   },
   icon: {
-    flex: 1,
-    width: "20px",
-    height: "20px",
-    alignSelf: "center",
-
-    paddingHorizontal: 10,
-    paddingVertical: 6,
-    
-   
-
+    flex: 2,
+    width: "200px",
+    height: "200px",
   
   }
 })
