@@ -113,8 +113,8 @@ const styles = StyleSheet.create({
     marginRight:"5%"
   }, 
   containerInput:{
-    backgroundColor:"#C6E0F9",
-    width:400 ,
+    backgroundColor:"white",
+    width:200 ,
     height:50,
     borderRadius: "15px",
     marginTop:"5%",
@@ -142,7 +142,7 @@ height:20,
 
 },
   button: {
-    backgroundColor: "green",
+    backgroundColor: "406343",
     height:50,
     width:100,
     paddingHorizontal: 10,
