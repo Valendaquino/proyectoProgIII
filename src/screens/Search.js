@@ -60,7 +60,7 @@ class Search extends Component {
           <TextInput
             style={styles.textInput}
             onChangeText={(text) => this.setState({ search: text})}
-            placeholder='Search post'
+            placeholder='     Search post'
             keyboardType='default'
           />
           <TouchableOpacity style={styles.buttonSearch} onPress={() => this.searchPost(this.state.search)}>
@@ -71,14 +71,14 @@ class Search extends Component {
         {
           this.state.searching ? (
             this.state.postsSearch.length === 0 ? (
-              <Text style={{ color: "black" }}>No results for {this.state.userSearch}, try searching for an existing email</Text>
+              <Text style={{ color: "black", fontSize:20 }}> No se encuntran resultados para "{this.state.userSearch}", intenta ingresando un email existente</Text>
             ) : (
-                <Text style={{ color: "black" }}> Results for {this.state.userSearch}</Text>
+                <Text style={{ color: "black",fontSize:20, marginTop:10, marginBottom:10, marginLeft:10, }}> Resultados para  {this.state.userSearch}</Text>
               )
 
           ) : (
             
-            <Image style={styles.icon} source={{uri:"https://img.icons8.com/ios/100/000000/search-client.png"}}/>
+            <Image style={styles.icon} source={{uri:<img src="https://img.icons8.com/material-outlined/96/000000/search-client.png"/>}}/>
            
             )
         }
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     backgroundColor: "black"
   },
   formContainer: {
-    height: '100px',
+    height: "100%",
     marginTop: 30,
     marginBottom: 30,
     flex: 1,
@@ -122,35 +122,34 @@ const styles = StyleSheet.create({
   },
   
   buttonSearch: {
-    backgroundColor: 'black',
-    width: "84px",
-    height: "26px",
-    borderRadius: "8px",
-    marginLeft: "2%",
-    marginRight: "5%",
-    borderStyle: 'solid',
-    borderColor: '#71CCF7',
+    backgroundColor: 'white',
+    width: 100,
+    height: 50,
+    borderRadius: 13,
+    marginLeft: 7,
+    marginRight:5,
     textAlign:"center",
     justifyContent: "center",
-    paddingBottom:1
+    paddingBottom:1,
+    fontSize:20
 
 
   },
   textButton: {
-    color: 'white',
+    color: 'black',
     
   },
   textInput: {
     backgroundColor: "white",
-    width: "200px",
-    height: "26px",
-    borderRadius: "8px"
+    width: 250,
+    height: 50,
+    borderRadius: "8px",
+    fontSize:20
+    
   },
-  icon: {
-    flex: 2,
+  icon:{
     width: "100%",
     height: "100%",
-  
   },
 
   actIndicator: {
