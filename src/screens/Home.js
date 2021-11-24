@@ -57,21 +57,28 @@ class Home extends Component {
 
       <View style={styles.container}>
         {
-          this.state.showME ? (
+          this.state.showME ? 
             <ActivityIndicator
               style={styles.actIndicator}
               size="large"
               color="#7BBBFA" />
-          ) : (
-              <View style={styles.container}>
-
+              :
+            <View style={styles.container}>
+              {this.state.posteos.length == 0 ? (
+                <View style={styles.noPosts}>
+                  <Image style={styles.icon} source={{ uri: "https://img.icons8.com/ios/100/000000/camera--v1.png" }} />
+                  <Text style={styles.noPostText}>No posts yet</Text>
+                  <TouchableOpacity style={styles.addNew} onPress={() => this.redirectNewPost()}> Add a new one</TouchableOpacity>
+                </View>
+              ) : (
                 <FlatList
                   data={this.state.posteos}
                   keyExtractor={post => post.id}
                   renderItem={({ item }) => <Post postData={item} />}
                 />
-              </View>
-            )
+              )}
+            </View>
+            
 
         }
       </View>
@@ -84,7 +91,7 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 10,
     backgroundColor: "rgba(0, 0, 0, 0)",
-   
+
   },
   formContainer: {
     backgroundColor: 'black',

@@ -53,7 +53,7 @@ class Profile extends Component {
       3000)
   }
   render() {
-console.log(auth.currentUser.displayName);
+    console.log(auth.currentUser.displayName);
     return (
       <View style={styles.container}>
         {
@@ -65,32 +65,32 @@ console.log(auth.currentUser.displayName);
             :
             <View style={styles.container2}>
               <View style={styles.userInfo}>
-                  <Text style={styles.user}><Image style={styles.icon2} source={{uri:"https://img.icons8.com/ios/50/000000/user--v2.png"}}/> {auth.currentUser.displayName}</Text>
-                  <Text style={styles.user}> {this.state.posteos.length} posts</Text>
+                <Text style={styles.user}><Image style={styles.icon2} source={{ uri: "https://img.icons8.com/ios/50/000000/user--v2.png" }} /> {auth.currentUser.displayName}</Text>
+                <Text style={styles.user}> {this.state.posteos.length} posts</Text>
               </View>
               {this.state.posteos.length == 0 ? (
                 <View style={styles.noPosts}>
-                  <Image style={styles.icon} source={{uri:"https://img.icons8.com/ios/100/000000/camera--v1.png"}}/>
+                  <Image style={styles.icon} source={{ uri: "https://img.icons8.com/ios/100/000000/camera--v1.png" }} />
                   <Text style={styles.noPostText}>No posts yet</Text>
                   <TouchableOpacity style={styles.addNew} onPress={() => this.redirectNewPost()}> Add a new one</TouchableOpacity>
                 </View>
               ) : (
-                  <FlatList
-                    data={this.state.posteos}
-                    keyExtractor={post => post.id}
-                    renderItem={({ item }) =>
-                      <>
+                <FlatList
+                  data={this.state.posteos}
+                  keyExtractor={post => post.id}
+                  renderItem={({ item }) =>
+                    <>
 
-                        <Post postData={item} />
+                      <Post postData={item} />
 
-                      </>
-                    }
-                  />
-                )}
+                    </>
+                  }
+                />
+              )}
 
-              <TouchableOpacity style={styles.button} onPress={() => this.props.logout()} > <Text>Log Out </Text> <Icon size={23} name="exit-sharp"/> </TouchableOpacity>
+              <TouchableOpacity style={styles.button} onPress={() => this.props.logout()} > <Text>Log Out </Text> <Icon size={23} name="exit-sharp" /> </TouchableOpacity>
               <View style={styles.personalInfo}>
-                
+
                 <Text>User e-mail: {auth.currentUser.email}</Text>
                 <Text>Creation date: {auth.currentUser.metadata.creationTime}</Text>
                 <Text>Last login: {auth.currentUser.metadata.lastSignInTime}</Text>
@@ -108,26 +108,25 @@ console.log(auth.currentUser.displayName);
 
 const styles = StyleSheet.create({
   container: {
- //esta linea rompe todo el perfil cuando se cargan fotos.
     paddingHorizontal: 10,
-    fontSize:"20px",
+    fontSize: "20px",
     backgroundColor: "rgba(0, 0, 0, 0)",
-    
+
   },
   container2: {
     flex: 1,
     backgroundColor: "rgba(0, 0, 0, 0)",
-   
-    
+
+
   },
   formContainer: {
 
     backgroundColor: '#FFFFFF',
     marginHorizontal: 10,
     padding: 100,
-    paddingTop:5,
-    marginTop:150
-   
+    paddingTop: 5,
+    marginTop: 150
+
   },
   field: {
     borderColor: '#444',
@@ -139,7 +138,7 @@ const styles = StyleSheet.create({
   },
   image: {
     height: 250,
-    flex:1
+    flex: 1
   },
   icon: {
     flex: 2,
@@ -162,25 +161,25 @@ const styles = StyleSheet.create({
     height: "fit-content",
     borderStyle: "solid",
     borderColor: "black",
-    display:"flex",
-    flexDirection:"row",
-    justifyContent:"center",
-    alignItems:"center",
-    alignSelf:"center",
-    alignContent:"center"
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
+    alignContent: "center"
 
-},
+  },
   textButton: {
     color: "black",
   },
   user: {
-    
-    fontSize: "60",
-    backgroundColor:'grey'
+
+    fontSize: "160",
+    backgroundColor: 'grey'
   },
   personalInfo: {
     marginTop: "20px",
-  
+
     bottom: 0
 
   },
@@ -191,7 +190,7 @@ const styles = StyleSheet.create({
     marginTop: "20px",
     marginBottom: "20px",
   },
-  noPostText:{
+  noPostText: {
     fontSize: "20px",
     textAlign: "center",
     marginBottom: "5px"
@@ -201,23 +200,23 @@ const styles = StyleSheet.create({
     fontStyle: "italics",
     marginLeft: "0px",
     marginRight: "0px",
-    textAlign:"center",
+    textAlign: "center",
     justifyContent: "center",
-    alignSelf:"center"
-   
-  }, 
-  userInfo:{
-    display:"flex", 
+    alignSelf: "center"
+
+  },
+  userInfo: {
+    display: "flex",
     flexDirection: "row",
     flex: 1,
     justifyContent: "space-between",
-    alignItems:"center",
-    margin:4,
-    
-    
-    
+    alignItems: "center",
+    margin: 4,
+
+
+
   },
-  icon2:{
+  icon2: {
     flex: 2,
     width: "20px",
     height: "20px",
@@ -225,17 +224,17 @@ const styles = StyleSheet.create({
     marginRight: 1
   },
 
- actIndicator: {
-  width: screen.width,
-  height: screen.height,
-  backgroundColor: 'white',
-  position: 'absolute',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  zIndex: 10
+  actIndicator: {
+    width: screen.width,
+    height: screen.height,
+    backgroundColor: 'white',
+    position: 'absolute',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 10
   }
-  
+
 })
 
 export default Profile;
