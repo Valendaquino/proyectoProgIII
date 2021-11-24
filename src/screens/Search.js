@@ -78,7 +78,7 @@ class Search extends Component {
 
           ) : (
             
-            <Image style={styles.icon} source={{uri:<img src="https://img.icons8.com/material-outlined/96/000000/search-client.png"/>}}/>
+            <Image source={{uri:<img src="https://img.icons8.com/material-outlined/96/000000/search-client.png"/>}}/>
            
             )
         }

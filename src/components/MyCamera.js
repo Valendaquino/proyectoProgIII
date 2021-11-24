@@ -79,6 +79,7 @@ class MyCamera extends Component {
             <View>
               <TouchableOpacity onPress={() => this.savePhoto()}>
                 <Text style={styles.buttonAc}>Aceptar</Text>
+                
               </TouchableOpacity>
               <TouchableOpacity onPress={() => this.deletePhoto()}>
                 <Text style={styles.buttonAc}>Cancelar</Text>

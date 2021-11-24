@@ -68,7 +68,7 @@ class PostForm extends Component{
          <View style={styles.formContainer}>
               <TextInput
                 style={styles.input}
-                placeholder="Write a description...."
+                placeholder="Escribe una descripcion"
                 keyboardType="default"
                 onChangeText={(text) => this.setState({ textoPost: text })}
                 value={this.state.textoPost}
@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderRadius: 6,
         marginVertical:10,
+        fontSize:20
     },
     button:{
         height:45,
