@@ -54,7 +54,7 @@ class Search extends Component {
   render() {
     console.log(this.state.searching);
     return (
-      <View>
+      <View >
         <View style={styles.formContainer}>
 
           <TextInput
@@ -78,7 +78,7 @@ class Search extends Component {
 
           ) : (
             
-            <Image source={{uri:<img src="https://img.icons8.com/material-outlined/96/000000/search-client.png"/>}}/>
+           <Text style={styles.text}> No posts searched yet </Text>
            
             )
         }
@@ -89,7 +89,7 @@ class Search extends Component {
           keyExtractor={post => post.id}
           renderItem={({ item }) => <Post postData={item} />}
         />
-{
+{/* lo sacaría mejor
        this.state.showME ?
         <ActivityIndicator 
           style= {{height: "100%" , width: "100%",justifyContent: "center", alignItems: "center"}}
@@ -99,16 +99,13 @@ class Search extends Component {
          <View style={styles.formContainer}>
 
       </View>
-       }
+       */}
        </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  body:{
-    backgroundColor: "black"
-  },
   formContainer: {
     height: "100%",
     marginTop: 30,
@@ -147,9 +144,12 @@ const styles = StyleSheet.create({
     fontSize:20
     
   },
-  icon:{
-    width: "100%",
-    height: "100%",
+
+  text:{
+    textAlign:"center",
+    fontSize:"30px",
+    marginTop: "100px"
+
   },
 
   actIndicator: {

@@ -142,7 +142,7 @@ height:20,
 
 },
   button: {
-    backgroundColor: "406343",
+    backgroundColor: "rgba(0, 0, 0, 0)",
     height:50,
     width:100,
     paddingHorizontal: 10,

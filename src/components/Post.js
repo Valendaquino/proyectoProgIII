@@ -3,7 +3,7 @@ import { Text, StyleSheet, View, Modal, Image, TouchableOpacity, FlatList, Alert
 import { auth, db } from '../firebase/config'
 import firebase from 'firebase'
 import CommentForm from './CommentForm'
-
+import Icon from "react-native-vector-icons/Ionicons"
 class Post extends Component {
     constructor(props) {
         super(props)
@@ -112,19 +112,7 @@ class Post extends Component {
 
     }
     deletePost() {
-        Alert.alert(
-            "Delete post",
-            "Are you sure you want to delete?",
-            [
-                {
-                    text: "Cancel",
-                    onPress: () => this.setState({ delete: false }),
-                    style: "cancel"
-                },
-                { text: "OK", onPress: this.setState({ delete: true }) }
-            ]
-        )
-        if (this.state.delete == true) {
+       
             db.collection("posts")
 
                 .doc(this.props.postData.id).delete()
@@ -133,9 +121,9 @@ class Post extends Component {
                 }).catch((error) => {
                     console.error("Error removing document: ", error);
                 });
-        } else {
+      
 
-        }
+    
 
     }
 
@@ -144,7 +132,7 @@ class Post extends Component {
         return (
             <View style={styles.container}>
                 {this.props.postData.data.user == auth.currentUser.email ? (
-                    <TouchableOpacity onPress={(id) => this.deletePost(this.props.postData.id)}>X</TouchableOpacity>
+                    <TouchableOpacity onPress={(id) => this.deletePost(this.props.postData.id)}><Icon  size={18} name="trash-bin-outline"/></TouchableOpacity>
                 ) :
                     null
                 }
@@ -174,13 +162,12 @@ class Post extends Component {
                     </TouchableOpacity>
                     
                 </View>
-
-                <TouchableOpacity style={styles.numLikes} onPress={() => this.showLikeModal()}>
-                    <Text style={styles.textButton}> Who liked</Text>
-                </TouchableOpacity>
-
-
+                <View style={{display:"flex", flexDirection:"row"}}>
                 <Text style={styles.email}> {this.props.postData.data.user} </Text>
+                <TouchableOpacity style={styles.numLikes} onPress={() => this.showLikeModal()}>
+                    <Text style={{color:"white", fontStyle:"italic"}}> Who liked?</Text>
+                </TouchableOpacity>
+                </View>
                 <Text style={styles.containerinfo}> {this.props.postData.data.description} </Text>
                 {/* Modal likes */}
                 {this.state.showLikeModal ?
@@ -362,19 +349,12 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
     numLikes:{
-        backgroundColor: "white",
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: "center",
-        borderRadius: 4,
-        borderWidth: 1,
-        width: "fit-content",
-        height: "60px",
-        borderStyle: "solid",
-        borderColor: "black",
         flex: 1,
         justifyContent: "center",
-        alignSelf:"center"
+        alignSelf:"center",
     },
     modalOn: {
         flex: 1,

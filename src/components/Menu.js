@@ -3,7 +3,7 @@ import { NavigationContainer, findFocusedRoute} from "@react-navigation/native";
 import { Image} from 'react-native'
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { auth } from "../firebase/config";
-
+import Icon from "react-native-vector-icons/Ionicons"
 // Import de los screens a los que quiero navegar
 import Home from '../screens/Home';
 import Profile from '../screens/Profile';
@@ -90,13 +90,13 @@ class Menu extends Component {
         <Drawer.Navigator>
             {this.state.loggedIn === true ? 
                 <>
-                    <Drawer.Screen name="Home"  component={() => <Home /> } options={{icon: <Image source={{uri:"https://img.icons8.com/material-sharp/24/000000/home.png"}} style={{flex: 2, height:"20px", width: "20px"}}/>}} /> 
-                    <Drawer.Screen name="Search" component={() => <Search /> }/>
-                    <Drawer.Screen name="Profile" component={(screenProps) => <Profile screenProps={screenProps}  logout={()=>this.logout()}/> }  />
-                    <Drawer.Screen name="New Post" component={(screenProps)=><PostForm screenProps={screenProps}/>}/>
+                    <Drawer.Screen name="Home"  component={() => <Home /> } options={{drawerIcon: config =>  <Icon size={23} name="home-outline" />, unmountOnBlur: true}} /> 
+                    <Drawer.Screen name="Search" component={() => <Search /> } options={{drawerIcon: config =>  <Icon size={23} name="search" />, unmountOnBlur: true}}/>
+                    <Drawer.Screen name="Profile" component={(screenProps) => <Profile screenProps={screenProps}  logout={()=>this.logout()}/> } options={{drawerIcon: config =>  <Icon size={23} name="person-outline" />, unmountOnBlur: true}} />
+                    <Drawer.Screen name="New Post" component={(screenProps)=><PostForm screenProps={screenProps}/>} options={{drawerIcon: config =>  <Icon size={23} name="add-circle-outline" />, unmountOnBlur: true}}/>
                     </>:<>
-                    <Drawer.Screen name="Login" component={(screenProps) => <Login screenProps={screenProps} login={(email, pass) => this.login(email,pass)} error={this.state.error}/>} />
-                    <Drawer.Screen name="Register"  component={(screenProps) => <Register screenProps={screenProps} register={(email, userName, pass) => this.register(email,userName, pass)} error={this.state.error} />}  />
+                    <Drawer.Screen name="Login" component={(screenProps) => <Login screenProps={screenProps} login={(email, pass) => this.login(email,pass)} error={this.state.error}/>} options={{drawerIcon: config =>  <Icon size={23} name="enter-sharp" />, unmountOnBlur: true}}/>
+                    <Drawer.Screen name="Register"  component={(screenProps) => <Register screenProps={screenProps} register={(email, userName, pass) => this.register(email,userName, pass)} error={this.state.error} />}  options={{drawerIcon: config =>  <Icon size={23} name="create-sharp" />, unmountOnBlur: true}}/>
                 </>
         }
         </Drawer.Navigator>

@@ -83,7 +83,7 @@ class Home extends Component {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 10,
-    backgroundColor: 'black',
+    backgroundColor: "rgba(0, 0, 0, 0)",
    
   },
   formContainer: {

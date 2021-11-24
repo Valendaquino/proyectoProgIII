@@ -3,6 +3,7 @@ import { Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, Fla
 import { db, auth } from '../firebase/config'
 import Post from '../components/Post';
 import { ceil } from 'react-native-reanimated';
+import Icon from "react-native-vector-icons/Ionicons"
 
 class Profile extends Component {
   constructor(props) {
@@ -58,7 +59,7 @@ console.log(auth.currentUser.displayName);
         {
           this.state.showME ?
             <ActivityIndicator
-              style={{ height: "100%", width: "100%", justifyContent: "center", alignItems: "center" }}
+              style={styles.actIndicator}
               size="large"
               color="#7BBBFA" />
             :
@@ -87,7 +88,7 @@ console.log(auth.currentUser.displayName);
                   />
                 )}
 
-              <TouchableOpacity style={styles.button} onPress={() => this.props.logout()} > Log Out </TouchableOpacity>
+              <TouchableOpacity style={styles.button} onPress={() => this.props.logout()} > <Text>Log Out </Text> <Icon size={23} name="exit-sharp"/> </TouchableOpacity>
               <View style={styles.personalInfo}>
                 
                 <Text>User e-mail: {auth.currentUser.email}</Text>
@@ -107,17 +108,16 @@ console.log(auth.currentUser.displayName);
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,//esta linea rompe todo el perfil cuando se cargan fotos.
+ //esta linea rompe todo el perfil cuando se cargan fotos.
     paddingHorizontal: 10,
     fontSize:"20px",
-    backgroundColor: 'green',
+    backgroundColor: "rgba(0, 0, 0, 0)",
     
   },
   container2: {
     flex: 1,
-    paddingHorizontal: 10,
-    backgroundColor: 'blue',
-    marginTop:20
+    backgroundColor: "rgba(0, 0, 0, 0)",
+   
     
   },
   formContainer: {
@@ -162,7 +162,12 @@ const styles = StyleSheet.create({
     height: "fit-content",
     borderStyle: "solid",
     borderColor: "black",
-    marginLeft:130,
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"center",
+    alignItems:"center",
+    alignSelf:"center",
+    alignContent:"center"
 
 },
   textButton: {
@@ -174,7 +179,9 @@ const styles = StyleSheet.create({
     backgroundColor:'grey'
   },
   personalInfo: {
-    marginTop: "20px"
+    marginTop: "20px",
+  
+    bottom: 0
 
   },
   noPosts: {
@@ -191,19 +198,11 @@ const styles = StyleSheet.create({
   },
   addNew: {
     fontSize: "20px",
-    borderRadius: 4,
-    borderWidth: 1,
-    width: "fit-content",
-    height: "fit-content",
-    backgroundColor: '#C6E0F9',
-    borderRadius: "8px",
+    fontStyle: "italics",
     marginLeft: "0px",
     marginRight: "0px",
-    borderStyle: 'solid',
-    borderColor: '#71CCF7',
     textAlign:"center",
     justifyContent: "center",
-    paddingBottom:1,
     alignSelf:"center"
    
   }, 
@@ -213,10 +212,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-between",
     alignItems:"center",
-    backgroundColor:"purple",
     margin:4,
-    height:40,
-
+    
+    
     
   },
   icon2:{
@@ -228,14 +226,14 @@ const styles = StyleSheet.create({
   },
 
  actIndicator: {
-    width: screen.width,
-    height: screen.height,
-    backgroundColor: 'white',
-    position: 'absolute',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 10
+  width: screen.width,
+  height: screen.height,
+  backgroundColor: 'white',
+  position: 'absolute',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  zIndex: 10
   }
   
 })

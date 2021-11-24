@@ -55,16 +55,21 @@ class PostForm extends Component{
  
     render(){
         return this.state.showCamera ? (
-            <MyCamera onImageUpload={(url) => this.onImageUpload(url)} />
+            
+              this.state.showME ? (
+               
+                <ActivityIndicator 
+                  style= {{height: "100%" , width: "100%",justifyContent: "center", alignItems: "center"}}
+                  size= "large" 
+                  color= "#7BBBFA"/>
+              ):(
+                <MyCamera onImageUpload={(url) => this.onImageUpload(url)} />
+              )
+            
+            
           ) : (
             <View style={styles.formContainer}>
-             {
-       this.state.showME ?
-        <ActivityIndicator 
-          style= {{height: "100%" , width: "100%",justifyContent: "center", alignItems: "center"}}
-          size= "large" 
-          color= "#7BBBFA"/>
-         :
+           
          <View style={styles.formContainer}>
               <TextInput
                 style={styles.input}
@@ -82,7 +87,7 @@ class PostForm extends Component{
                 <Text style={styles.textButton}>Post</Text>
               </TouchableOpacity>
             </View>
-              }
+              
               </View>
           );
         }
