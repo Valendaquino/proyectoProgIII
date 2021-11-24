@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-  ActivityIndicator,
-} from "react-native";
+import {Text, View, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator,} from "react-native";
 
 class Register extends Component {
   constructor(props) {
