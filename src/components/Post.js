@@ -132,7 +132,7 @@ class Post extends Component {
         return (
             <View style={styles.container}>
                 {this.props.postData.data.user == auth.currentUser.email ? (
-                    <TouchableOpacity onPress={(id) => this.deletePost(this.props.postData.id)}><Icon  size={18} name="trash-bin-outline"/></TouchableOpacity>
+                    <TouchableOpacity onPress={(id) => this.deletePost(this.props.postData.id)}><Icon style={styles.tacho} size={28}  name="trash-bin-outline"/></TouchableOpacity>
                 ) :
                     null
                 }
@@ -189,7 +189,7 @@ class Post extends Component {
                                         renderItem={({ item }) => (
 
                                             <View >
-                                                <Text style={styles.email}>{item} </Text>
+                                                <Text style={styles.emailikes}>{item} </Text>
 
                                             </View>
                                         )}
@@ -222,7 +222,7 @@ class Post extends Component {
                                         keyExtractor={comment => comment.createdAt.toString()}
                                         renderItem={({ item }) => (
                                             <View style={styles.comms}>
-                                                <Text style={styles.email}>{item.user}: </Text>
+                                                <Text style={styles.emailcomments}>{item.user}: </Text>
                                                 <Text>{item.comment}</Text>
                                             </View>
                                         )}
@@ -312,9 +312,10 @@ const styles = StyleSheet.create({
     closeModal: {
         alignSelf: 'flex-end',
         padding: 10,
-        backgroundColor: '#71CCF7',
+        backgroundColor: 'balck',
         marginTop: 2,
         borderRadius: 4,
+    
        
     },
     modalText: {
@@ -374,7 +375,17 @@ const styles = StyleSheet.create({
         alignItems:"center",
        
     
-    }
+    },
+    emailikes:{
+      color:"black"
+  },
+  emailcomments:{
+      color:"black"
+  },
+  tacho:{
+    color:'white',
+    marginLeft:5
+  }
 
 });
 

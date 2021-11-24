@@ -173,9 +173,9 @@ const styles = StyleSheet.create({
     color: "black",
   },
   user: {
-
-    fontSize: "160",
-    backgroundColor: 'grey'
+    color:"black",
+    fontSize: 25,
+    
   },
   personalInfo: {
     marginTop: "20px",
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-between",
     alignItems: "center",
-    margin: 4,
+    margin: 5,
 
 
 

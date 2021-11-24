@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
         paddingHorizontal:10,
         marginTop: 20,
         marginBottom:90,
+        height: "50%"
        
         
     },
@@ -51,17 +52,18 @@ const styles = StyleSheet.create({
         
     },
     button:{
-        backgroundColor:'#71CCF7',
+        backgroundColor:'black',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
         borderRadius:4, 
         borderWidth:1,
         borderStyle: 'solid',
-        borderColor: '#71CCF7'
+        borderColor: 'black',
+        height:40
     },
     textButton:{
-        color: '#fff'
+        color: 'white'
     }
 
 })
