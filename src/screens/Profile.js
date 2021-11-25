@@ -151,22 +151,21 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   button: {
-    backgroundColor: "white",
-    paddingHorizontal: 10,
-    paddingVertical: 6,
-    textAlign: "center",
-    borderRadius: 4,
-    borderWidth: 1,
-    width: "fit-content",
-    height: "fit-content",
-    borderStyle: "solid",
-    borderColor: "black",
     display: "flex",
     flexDirection: "row",
-    justifyContent: "center",
     alignItems: "center",
     alignSelf: "center",
-    alignContent: "center"
+    alignContent: "center",
+    backgroundColor: 'white',
+    width: 100,
+    height: 50,
+    borderRadius: 13,
+    marginLeft: 7,
+    marginRight:5,
+    textAlign:"center",
+    justifyContent: "center",
+    paddingBottom:1,
+    fontSize:20
 
   },
   textButton: {
@@ -202,8 +201,8 @@ const styles = StyleSheet.create({
     marginRight: "0px",
     textAlign: "center",
     justifyContent: "center",
-    alignSelf: "center"
-
+    alignSelf: "center",
+    fontStyle:"italic"
   },
   userInfo: {
     display: "flex",

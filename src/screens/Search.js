@@ -119,6 +119,7 @@ const styles = StyleSheet.create({
   },
   
   buttonSearch: {
+    display: "flex",
     backgroundColor: 'white',
     width: 100,
     height: 50,

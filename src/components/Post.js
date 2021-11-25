@@ -132,7 +132,7 @@ class Post extends Component {
         return (
             <View style={styles.container}>
                 {this.props.postData.data.user == auth.currentUser.email ? (
-                    <TouchableOpacity onPress={(id) => this.deletePost(this.props.postData.id)}><Icon style={styles.tacho} size={28}  name="trash-bin-outline"/></TouchableOpacity>
+                    <TouchableOpacity onPress={(id) => this.deletePost(this.props.postData.id)}><Icon style={styles.tacho} size={21}  name="trash-bin-outline"/></TouchableOpacity>
                 ) :
                     null
                 }
@@ -384,7 +384,10 @@ const styles = StyleSheet.create({
   },
   tacho:{
     color:'white',
-    marginLeft:5
+    marginLeft:5,
+    alignSelf: "self-end",
+    marginTop:"3px",
+    paddingRight: "10px"
   }
 
 });

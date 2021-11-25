@@ -110,15 +110,21 @@ const styles = StyleSheet.create({
         fontSize:20
     },
     button:{
-        height:45,
-        backgroundColor: "white",
-        paddingHorizontal: 10,
-        paddingVertical: 6,
-        textAlign: 'center',
-        borderRadius:4, 
-        borderWidth:1,
-        borderStyle: 'solid',
-        borderColor: 'black'
+      display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    alignSelf: "center",
+    alignContent: "center",
+    backgroundColor: 'white',
+    width: 100,
+    height: 50,
+    borderRadius: 13,
+    marginLeft: 7,
+    marginRight:5,
+    textAlign:"center",
+    justifyContent: "center",
+    paddingBottom:1,
+    fontSize:20
     },
     textButton:{
         color: 'black',
