@@ -112,18 +112,18 @@ class Post extends Component {
 
     }
     deletePost() {
-       
-            db.collection("posts")
 
-                .doc(this.props.postData.id).delete()
-                .then((post) => {
-                    console.log(this.props.postData.id);
-                }).catch((error) => {
-                    console.error("Error removing document: ", error);
-                });
-      
+        db.collection("posts")
 
-    
+            .doc(this.props.postData.id).delete()
+            .then((post) => {
+                console.log(this.props.postData.id);
+            }).catch((error) => {
+                console.error("Error removing document: ", error);
+            });
+
+
+
 
     }
 
@@ -132,7 +132,7 @@ class Post extends Component {
         return (
             <View style={styles.container}>
                 {this.props.postData.data.user == auth.currentUser.email ? (
-                    <TouchableOpacity onPress={(id) => this.deletePost(this.props.postData.id)}><Icon style={styles.tacho} size={21}  name="trash-bin-outline"/></TouchableOpacity>
+                    <TouchableOpacity onPress={(id) => this.deletePost(this.props.postData.id)}><Icon style={styles.tacho} size={21} name="trash-bin-outline" /></TouchableOpacity>
                 ) :
                     null
                 }
@@ -160,13 +160,13 @@ class Post extends Component {
                     <TouchableOpacity style={styles.button} onPress={() => this.showCommentModal()}>
                         <Text style={styles.textButton}> <Image style={styles.icon} source={{ uri: "https://img.icons8.com/small/16/000000/topic--v1.png" }} /> {this.props.postData.data.comments.length}</Text>
                     </TouchableOpacity>
-                    
+
                 </View>
-                <View style={{display:"flex", flexDirection:"row"}}>
-                <Text style={styles.email}> {this.props.postData.data.user} </Text>
-                <TouchableOpacity style={styles.numLikes} onPress={() => this.showLikeModal()}>
-                    <Text style={{color:"white", fontStyle:"italic"}}> Who liked?</Text>
-                </TouchableOpacity>
+                <View style={{ display: "flex", flexDirection: "row" }}>
+                    <Text style={styles.email}> {this.props.postData.data.user} </Text>
+                    <TouchableOpacity style={styles.numLikes} onPress={() => this.showLikeModal()}>
+                        <Text style={{ color: "white", fontStyle: "italic" }}> Who liked?</Text>
+                    </TouchableOpacity>
                 </View>
                 <Text style={styles.containerinfo}> {this.props.postData.data.description} </Text>
                 {/* Modal likes */}
@@ -201,7 +201,7 @@ class Post extends Component {
 
 
                     </Modal> :
-                    <Text></Text>
+                    null
                 }
                 {/* Modal comentarios */}
                 {this.state.showCommentModal ?
@@ -234,7 +234,7 @@ class Post extends Component {
                         <CommentForm guardarComentario={(algo) => this.guardarComentario(algo)} />
 
                     </Modal> :
-                    <Text></Text>
+                    null
                 }
             </View>
         )
@@ -259,9 +259,6 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginLeft: 10,
         marginRight: 10,
-
-
-        // color:'white'
     },
     email: {
         color: 'white',
@@ -292,12 +289,10 @@ const styles = StyleSheet.create({
         height: "fit-content",
         borderStyle: "solid",
         borderColor: "black",
-
     },
     textButton: {
         color: "black",
     },
-
     modalContainer: {
         width: '100%',
         height: '100%',
@@ -315,8 +310,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'balck',
         marginTop: 2,
         borderRadius: 4,
-    
-       
     },
     modalText: {
         color: 'black',
@@ -330,14 +323,11 @@ const styles = StyleSheet.create({
     comms: {
         display: "flex",
         flexDirection: "row",
-
-
     },
     icon: {
         flex: 2,
         width: "15px",
         height: "15px",
-
     },
     likes: {
         flex: 2,
@@ -349,13 +339,13 @@ const styles = StyleSheet.create({
         marginBottom: 50,
         marginTop: 10,
     },
-    numLikes:{
+    numLikes: {
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: "center",
         flex: 1,
         justifyContent: "center",
-        alignSelf:"center",
+        alignSelf: "center",
     },
     modalOn: {
         flex: 1,
@@ -363,8 +353,7 @@ const styles = StyleSheet.create({
         width: "100%",
         justifyContent: "center",
         marginBottom: "-30px",
-        alignItems:"center",
-       
+        alignItems: "center",
     },
     modalOff: {
         flex: 1,
@@ -372,24 +361,21 @@ const styles = StyleSheet.create({
         width: "100%",
         justifyContent: "center",
         marginBottom: "inherit",
-        alignItems:"center",
-       
-    
+        alignItems: "center",
     },
-    emailikes:{
-      color:"black"
-  },
-  emailcomments:{
-      color:"black"
-  },
-  tacho:{
-    color:'white',
-    marginLeft:5,
-    alignSelf: "self-end",
-    marginTop:"3px",
-    paddingRight: "10px"
-  }
-
+    emailikes: {
+        color: "black"
+    },
+    emailcomments: {
+        color: "black"
+    },
+    tacho: {
+        color: 'white',
+        marginLeft: 5,
+        alignSelf: "self-end",
+        marginTop: "3px",
+        paddingRight: "10px"
+    }
 });
 
 export default Post

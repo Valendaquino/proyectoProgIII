@@ -75,18 +75,18 @@ class Profile extends Component {
                   <TouchableOpacity style={styles.addNew} onPress={() => this.redirectNewPost()}> Add a new one</TouchableOpacity>
                 </View>
               ) : (
-                <FlatList
-                  data={this.state.posteos}
-                  keyExtractor={post => post.id}
-                  renderItem={({ item }) =>
-                    <>
+                  <FlatList
+                    data={this.state.posteos}
+                    keyExtractor={post => post.id}
+                    renderItem={({ item }) =>
+                      <>
 
-                      <Post postData={item} />
+                        <Post postData={item} />
 
-                    </>
-                  }
-                />
-              )}
+                      </>
+                    }
+                  />
+                )}
 
               <TouchableOpacity style={styles.button} onPress={() => this.props.logout()} > <Text>Log Out </Text> <Icon size={23} name="exit-sharp" /> </TouchableOpacity>
               <View style={styles.personalInfo}>
@@ -111,22 +111,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     fontSize: "20px",
     backgroundColor: "rgba(0, 0, 0, 0)",
-
   },
   container2: {
     flex: 1,
     backgroundColor: "rgba(0, 0, 0, 0)",
-
-
   },
   formContainer: {
-
     backgroundColor: '#FFFFFF',
     marginHorizontal: 10,
     padding: 100,
     paddingTop: 5,
     marginTop: 150
-
   },
   field: {
     borderColor: '#444',
@@ -161,26 +156,22 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 13,
     marginLeft: 7,
-    marginRight:5,
-    textAlign:"center",
+    marginRight: 5,
+    textAlign: "center",
     justifyContent: "center",
-    paddingBottom:1,
-    fontSize:20
-
+    paddingBottom: 1,
+    fontSize: 20
   },
   textButton: {
     color: "black",
   },
   user: {
-    color:"black",
+    color: "black",
     fontSize: 25,
-    
   },
   personalInfo: {
     marginTop: "20px",
-
     bottom: 0
-
   },
   noPosts: {
     display: "flex",
@@ -202,7 +193,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     justifyContent: "center",
     alignSelf: "center",
-    fontStyle:"italic"
+    fontStyle: "italic"
   },
   userInfo: {
     display: "flex",
@@ -233,7 +224,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     zIndex: 10
   }
-
 })
 
 export default Profile;

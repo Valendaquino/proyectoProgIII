@@ -130,12 +130,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingBottom:1,
     fontSize:20
-
-
   },
   textButton: {
     color: 'black',
-    
   },
   textInput: {
     backgroundColor: "white",
@@ -143,16 +140,12 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: "8px",
     fontSize:20
-    
   },
-
   text:{
     textAlign:"center",
     fontSize:"30px",
     marginTop: "100px"
-
   },
-
   actIndicator: {
     width: screen.width,
     height: screen.height,

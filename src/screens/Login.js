@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator} from "react-native";
+import { Text, View, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator } from "react-native";
 
 class Login extends Component {
   constructor() {
@@ -46,8 +46,8 @@ class Login extends Component {
                 this.state.err ? (
                   <Text style={styles.hide}>{this.props.error}</Text>
                 ) : (
-                  <Text>{this.props.error}</Text>
-                )
+                    <Text>{this.props.error}</Text>
+                  )
               }
               <img src="https://img.icons8.com/fluency/96/000000/multiple-choice.png" />
               <TextInput style={styles.containerInput}
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     marginLeft: "5%",
     marginRight: "5%"
   },
-  
+
   containerInput: {
     backgroundColor: "white",
     width: 250,
@@ -118,8 +118,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#D3D3D3',
     display: 'none',
   },
-
-
   button: {
     backgroundColor: "406343",
     height: 50,
@@ -136,12 +134,10 @@ const styles = StyleSheet.create({
   },
   textButton: {
     color: "406343",
-
   },
   hide: {
     display: 'none'
   },
-
   actIndicator: {
     width: screen.width,
     height: screen.height,
@@ -152,6 +148,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     zIndex: 10
   }
-
 });
 export default Login;

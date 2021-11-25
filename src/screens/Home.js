@@ -57,12 +57,12 @@ class Home extends Component {
 
       <View style={styles.container}>
         {
-          this.state.showME ? 
+          this.state.showME ?
             <ActivityIndicator
               style={styles.actIndicator}
               size="large"
               color="#7BBBFA" />
-              :
+            :
             <View style={styles.container}>
               {this.state.posteos.length == 0 ? (
                 <View style={styles.noPosts}>
@@ -71,14 +71,14 @@ class Home extends Component {
                   <TouchableOpacity style={styles.addNew} onPress={() => this.redirectNewPost()}> Add a new one</TouchableOpacity>
                 </View>
               ) : (
-                <FlatList
-                  data={this.state.posteos}
-                  keyExtractor={post => post.id}
-                  renderItem={({ item }) => <Post postData={item} />}
-                />
-              )}
+                  <FlatList
+                    data={this.state.posteos}
+                    keyExtractor={post => post.id}
+                    renderItem={({ item }) => <Post postData={item} />}
+                  />
+                )}
             </View>
-            
+
 
         }
       </View>
@@ -124,7 +124,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     zIndex: 10
   }
-
 })
 
 export default Home;
