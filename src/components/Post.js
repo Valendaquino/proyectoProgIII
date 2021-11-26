@@ -44,10 +44,8 @@ class Post extends Component {
             .then(() => {
                 this.setState({
                     likes: this.props.postData.data.likes.length,
-                    // this.state.likes + 1, //traer de la base de datos.
                     liked: true
                 })
-                console.log('likeado');
             })
             .catch((error) => {
                 console.error("Error updating document: ", error);
@@ -121,10 +119,6 @@ class Post extends Component {
             }).catch((error) => {
                 console.error("Error removing document: ", error);
             });
-
-
-
-
     }
 
 
@@ -156,19 +150,23 @@ class Post extends Component {
                                 </TouchableOpacity>
                         }
                     </View>
+
                     {/* MODAL  */}
                     <TouchableOpacity style={styles.button} onPress={() => this.showCommentModal()}>
                         <Text style={styles.textButton}> <Image style={styles.icon} source={{ uri: "https://img.icons8.com/small/16/000000/topic--v1.png" }} /> {this.props.postData.data.comments.length}</Text>
                     </TouchableOpacity>
 
                 </View>
+               
                 <View style={{ display: "flex", flexDirection: "row" }}>
                     <Text style={styles.email}> {this.props.postData.data.user} </Text>
                     <TouchableOpacity style={styles.numLikes} onPress={() => this.showLikeModal()}>
                         <Text style={{ color: "white", fontStyle: "italic" }}> Who liked?</Text>
                     </TouchableOpacity>
                 </View>
+                
                 <Text style={styles.containerinfo}> {this.props.postData.data.description} </Text>
+                
                 {/* Modal likes */}
                 {this.state.showLikeModal ?
                     <Modal style={styles.modalContainer}
@@ -187,9 +185,8 @@ class Post extends Component {
                                         data={this.props.postData.data.likes}
                                         keyExtractor={like => like.user}
                                         renderItem={({ item }) => (
-
                                             <View >
-                                                <Text style={styles.emailikes}>{item} </Text>
+                                                <Text style={styles.emailikes}> {item} </Text>
 
                                             </View>
                                         )}
@@ -197,12 +194,10 @@ class Post extends Component {
                                     />
                                 )
                         }
-
-
-
                     </Modal> :
                     null
                 }
+                
                 {/* Modal comentarios */}
                 {this.state.showCommentModal ?
                     <Modal style={styles.modalContainer}
